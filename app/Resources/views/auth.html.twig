@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="{{ asset('public/vendor/bootstrap/dist/css/bootstrap.css') }}" />
+        
+        <!-- Bootswatch - cosmo  -->
+        <link rel="stylesheet" href="{{ asset('public/vendor/bootswatch/dist/css/cosmo_bootstrap.css') }}" />
+        
+        <!-- Font-Awesome -->
+        <link rel="stylesheet" href="{{ asset('public/vendor/font-awesome/css/font-awesome.css') }}" />
+        
+        <link rel="stylesheet" href="{{ asset('public/vendor/animatedcss/animate.css') }}">
+        
+        <!-- Main -->
+        <link rel="stylesheet" href="{{ asset('public/css/sb-admin-2.css') }}" />
+        <link rel="stylesheet" href="{{ asset('public/css/timeline.css') }}" />
+        <link rel="stylesheet" href="{{ asset('public/css/validcode_main.css') }}" />
+        
+        {% block stylesheets %}{% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+    </head>
+    <body>
+
+	<div class="container-fluid">
+		<div class="row">{% block body %}{% endblock %}</div>
+		<!-- /.row -->
+	</div>
+
+
+	<!-- Javascript -->
+        <script type="text/javascript" type="text/javascript" src="{{ asset('public/js/jquery/dist/jquery.js') }}"></script>
+        <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+        
+        <!-- JS Site -->
+        <script type="text/javascript" type="text/javascript" src="{{ asset('public/js/animate.jquery.ext.js') }}"></script>
+        
+        
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

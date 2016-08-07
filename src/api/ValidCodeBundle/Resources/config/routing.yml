@@ -1,0 +1,3 @@
+validcode_index:
+    resource: "@apiValidCodeBundle/Resources/config/routing/validcode_index.php"
+    prefix:   /api/index
