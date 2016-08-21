@@ -15,10 +15,14 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
     	
-    	$session = new Session();
+    	return $this->render('default/index.html.twig', [
+    			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+    	]);
+    	
+    	//$session = new Session();
     	
     	
-    	
+    	/* 
         if($session->get('auth') == NULL)
         {
         	return $this->redirect($this->generateUrl('auth_login'));
@@ -29,7 +33,17 @@ class DefaultController extends Controller
         			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         	]);
         }
-        
+         */
         
     }
+    
+    
+    public function lotesAction(Request $request)
+    {
+    	
+    	return $this->render('apiValidCodeBundle:Default:index.html.twig');
+    	
+    }
+    
+    
 }

@@ -27,6 +27,21 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
+        // validcode_index
+        if (rtrim($pathinfo, '/') === '/api/index') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_validcode_index;
+            }
+
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'validcode_index');
+            }
+
+            return array (  '_controller' => 'api\\ValidCodeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'validcode_index',);
+        }
+        not_validcode_index:
+
         // login
         if ($pathinfo === '/Login') {
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::LoginAction',  '_route' => 'login',);
@@ -41,34 +56,16 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/auth')) {
-            // auth_index
-            if (rtrim($pathinfo, '/') === '/auth') {
-                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
-                    goto not_auth_index;
-                }
-
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'auth_index');
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\AuthController::indexAction',  '_route' => 'auth_index',);
+        // auth_login
+        if ($pathinfo === '/Login') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_auth_login;
             }
-            not_auth_index:
 
-            // auth_login
-            if (preg_match('#^/auth/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_auth_login;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'auth_login')), array (  '_controller' => 'AppBundle\\Controller\\AuthController::loginAction',));
-            }
-            not_auth_login:
-
+            return array (  '_controller' => 'AppBundle\\Controller\\AuthController::loginAction',  '_route' => 'auth_login',);
         }
+        not_auth_login:
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

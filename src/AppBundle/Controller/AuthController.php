@@ -13,14 +13,16 @@ class AuthController extends Controller
      */
     public function LoginAction(Request $request)
     {
-    	print_r($request->getMethod());
-    	if($request->isMethod('POST')){
-    		
-    		echo "POST po";
-    		die;
-    	}
     	
-        return $this->render('AppBundle:Auth:login.html.twig', array('login'=>'', 'password'=>''));
+    	$auth = $this->get('security.authentication_utils');
+    	
+    	$error = $auth->getLastAuthenticationError();
+    	
+    	$lastUsername = $auth->getLastUsername();
+    	
+        return $this->render('AppBundle:Auth:login.html.twig', 
+        		array('last_username'=>$lastUsername, 
+        				'error'=>$error));
     }
 
 }
