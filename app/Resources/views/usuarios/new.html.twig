@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="row">
+	
+    {{ form_start(form) }}
+        <fieldset>
+        	<legend>Cadastro de Usuarios</legend>
+        	{{ form_widget(form) }}
+        	
+        	<div class="col-lg-12 text-right">
+        		<hr>
+        		<a href="{{ path('usuarios_index') }}" class="btn btn-default btn-sm">
+        			<i class="glyphicon glyphicon-backward"></i> Voltar
+        		</a>
+	        	<button type="submit" class="btn btn-primary btn-sm">
+		        	<i class="glyphicon glyphicon-plus"></i> Salvar
+		        </button>
+        	</div>
+        </fieldset>
+        
+    {{ form_end(form) }}
+	
+	</div>
+	
+    <ul>
+        <li>
+            <a href="">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>LicencaUso</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Dtemissao</th>
+                <td>{% if licencaUso.dtEmissao %}{{ licencaUso.dtEmissao|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dtliberacao</th>
+                <td>{% if licencaUso.dtLiberacao %}{{ licencaUso.dtLiberacao|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prazoexpiracao</th>
+                <td>{{ licencaUso.prazoExpiracao }}</td>
+            </tr>
+            <tr>
+                <th>Precolicenca</th>
+                <td>{{ licencaUso.precoLicenca }}</td>
+            </tr>
+            <tr>
+                <th>Ativo</th>
+                <td>{{ licencaUso.ativo }}</td>
+            </tr>
+            <tr>
+                <th>Idlicencauso</th>
+                <td>{{ licencaUso.idLicencaUso }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('licenca_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('licenca_edit', { 'id': licencaUso.idLicencaUso }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

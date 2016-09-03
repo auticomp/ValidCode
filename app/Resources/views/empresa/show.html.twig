@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Empresa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Cnpjempresa</th>
+                <td>{{ empresa.cnpjEmpresa }}</td>
+            </tr>
+            <tr>
+                <th>Inscrestempresa</th>
+                <td>{{ empresa.inscrEstEmpresa }}</td>
+            </tr>
+            <tr>
+                <th>Nomefantasia</th>
+                <td>{{ empresa.nomeFantasia }}</td>
+            </tr>
+            <tr>
+                <th>Razaosocial</th>
+                <td>{{ empresa.razaoSocial }}</td>
+            </tr>
+            <tr>
+                <th>Dataabertura</th>
+                <td>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dtcadastro</th>
+                <td>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ativa</th>
+                <td>{{ empresa.ativa }}</td>
+            </tr>
+            <tr>
+                <th>Idempresa</th>
+                <td>{{ empresa.idEmpresa }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('empresa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('empresa_edit', { 'id': empresa.idEmpresa }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

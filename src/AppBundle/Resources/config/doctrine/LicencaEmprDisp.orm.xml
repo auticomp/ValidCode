@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\LicencaEmprDisp" table="licenca_empr_disp">
+    <indexes>
+      <index name="fk__licenca_empr_disp__dispositivo1_idx" columns="ce_id_dispositivo"/>
+      <index name="fk__licenca_empr_disp__licenca_uso1_idx" columns="ce_id_licenca"/>
+      <index name="fk__licenca_empr_disp__empresas1_idx" columns="ce_id_empresa"/>
+    </indexes>
+    <id name="idLicencaEmprDisp" type="integer" column="id_licenca_empr_disp">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="ceLicenca" target-entity="LicencaUso" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_licenca" referenced-column-name="id_licenca_uso"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceEmpresa" target-entity="Empresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_empresa" referenced-column-name="id_empresa"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceDispositivo" target-entity="Dispositivo" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_dispositivo" referenced-column-name="id_dispositivo"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

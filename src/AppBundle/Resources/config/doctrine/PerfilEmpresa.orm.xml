@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\PerfilEmpresa" table="perfil_empresa">
+    <indexes>
+      <index name="fk__perfil_empresa__empresas1_idx" columns="ce_id_empresa"/>
+      <index name="fk__perfil_empresa__perfil_usuario1_idx" columns="ce_id_perfil"/>
+    </indexes>
+    <id name="idPerfilEmpresa" type="bigint" column="id_perfil_empresa">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="alliasEmpresa" type="string" column="allias_empresa" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
+    <field name="ativo" type="integer" column="ativo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="cePerfil" target-entity="PerfilUsuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_perfil" referenced-column-name="id_perfil_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceEmpresa" target-entity="Empresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_empresa" referenced-column-name="id_empresa"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

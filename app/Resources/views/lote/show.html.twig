@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lote</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nomelote</th>
+                <td>{{ lote.nomeLote }}</td>
+            </tr>
+            <tr>
+                <th>Dtcadastro</th>
+                <td>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Qtdeitenscoletados</th>
+                <td>{{ lote.qtdeItensColetados }}</td>
+            </tr>
+            <tr>
+                <th>Limiteitens</th>
+                <td>{{ lote.limiteItens }}</td>
+            </tr>
+            <tr>
+                <th>Dtfechamento</th>
+                <td>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dtexclusao</th>
+                <td>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ativo</th>
+                <td>{{ lote.ativo }}</td>
+            </tr>
+            <tr>
+                <th>Idlote</th>
+                <td>{{ lote.idLote }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lote_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('lote_edit', { 'id': lote.idLote }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+		<h3>Home > <a href="">Listagem de Lotes</a></h3>
+		<hr />
+	</div>
+	
+	<div class="col-md-12">
+		<a href="{{ path('lote_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+	</div>
+	
+	<div class="col-md-12">
+	<br>
+	<table id="tbLoteIndex" class="table table-borderer table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Dt. Cadastro</th>
+                <th>Qtde. Itens</th>
+                <th>Limite de Itens?</th>
+                <th>Dt. fechamento</th>
+                <th>Dt. exclusao</th>
+                <th>Ativo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lote in lotes %}
+            <tr>
+            	<td>{{ lote.idLote }}</td>
+                <td><a href="{{ path('lote_show', { 'id': lote.idLote }) }}">{{ lote.nomeLote }}</a></td>
+                <td>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ lote.qtdeItensColetados }}</td>
+                <td>{{ lote.limiteItens }}</td>
+                <td>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ lote.ativo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lote_show', { 'id': lote.idLote }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lote_edit', { 'id': lote.idLote }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	</div>
+	
+</div>
+
+{% endblock %}
+
+ {% block stylesheets %}
+ 
+ {% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tbLoteIndex").dataTable();
+	});
+</script>
+{% endblock %}

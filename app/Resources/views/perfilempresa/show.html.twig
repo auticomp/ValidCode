@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PerfilEmpresa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Alliasempresa</th>
+                <td>{{ perfilEmpresa.alliasEmpresa }}</td>
+            </tr>
+            <tr>
+                <th>Dtcadastro</th>
+                <td>{% if perfilEmpresa.dtCadastro %}{{ perfilEmpresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ativo</th>
+                <td>{{ perfilEmpresa.ativo }}</td>
+            </tr>
+            <tr>
+                <th>Idperfilempresa</th>
+                <td>{{ perfilEmpresa.idPerfilEmpresa }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('perfilempresa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('perfilempresa_edit', { 'id': perfilEmpresa.idPerfilEmpresa }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

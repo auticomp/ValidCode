@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Dispositivo" table="dispositivo">
+    <indexes>
+      <index name="fk__dispositivo__dominio_marca_disp1_idx" columns="ce_id_marca"/>
+      <index name="fk__dispositivo__dominio_categoria_disp1_idx" columns="ce_id_categoria"/>
+    </indexes>
+    <id name="idDispositivo" type="bigint" column="id_dispositivo">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descricaoModelo" type="string" column="descricao_modelo" length="150" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="numeroSerie" type="string" column="numero_serie" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="macAddress" type="string" column="mac_address" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="ceMarca" target-entity="DominioMarcaDisp" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_marca" referenced-column-name="id_dominio_marca_disp"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceCategoria" target-entity="DominioCategoriaDisp" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_categoria" referenced-column-name="id_dominio_categoria_disp"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

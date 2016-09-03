@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>LicencaUso list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Dtemissao</th>
+                <th>Dtliberacao</th>
+                <th>Prazoexpiracao</th>
+                <th>Precolicenca</th>
+                <th>Ativo</th>
+                <th>Idlicencauso</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for licencaUso in licencaUsos %}
+            <tr>
+                <td><a href="{{ path('licenca_show', { 'id': licencaUso.idLicencaUso }) }}">{{ licencaUso.dtEmissao }}</a></td>
+                <td>{% if licencaUso.dtLiberacao %}{{ licencaUso.dtLiberacao|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ licencaUso.prazoExpiracao }}</td>
+                <td>{{ licencaUso.precoLicenca }}</td>
+                <td>{{ licencaUso.ativo }}</td>
+                <td>{{ licencaUso.idLicencaUso }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('licenca_show', { 'id': licencaUso.idLicencaUso }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('licenca_edit', { 'id': licencaUso.idLicencaUso }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('licenca_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

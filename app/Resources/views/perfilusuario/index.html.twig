@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+		<h3>Home > <a href="">Listagem de Perfis</a></h3>
+		<hr />
+	</div>
+	
+	<div class="col-md-12">
+		<a href="{{ path('perfilusuario_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+	</div>
+	
+	<div class="col-md-12">
+	<br>
+	<table id="tbPerfisIndex" class="table table-borderer table-stripped table-hover">
+        <thead>
+            <tr>
+                <th>Perfilusuario</th>
+                <th>Ativo</th>
+                <th>Idperfilusuario</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for perfilUsuario in perfilUsuarios %}
+            <tr>
+                <td><a href="{{ path('perfilusuario_show', { 'id': perfilUsuario.idPerfilUsuario }) }}">{{ perfilUsuario.perfilUsuario }}</a></td>
+                <td>{{ perfilUsuario.ativo }}</td>
+                <td>{{ perfilUsuario.idPerfilUsuario }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('perfilusuario_show', { 'id': perfilUsuario.idPerfilUsuario }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('perfilusuario_edit', { 'id': perfilUsuario.idPerfilUsuario }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	</div>
+	
+</div>
+
+
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tbPerfisIndex").dataTable();
+	});
+</script>
+{% endblock %}

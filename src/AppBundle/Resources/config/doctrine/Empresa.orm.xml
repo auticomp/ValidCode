@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Empresa" table="empresa">
+    <indexes>
+      <index name="fk__empresa__dominio_tipo_empresa1_idx" columns="ce_tipo_empresa"/>
+      <index name="fk__empresa__dominio_tam_empresa1_idx" columns="ce_tam_empresa"/>
+      <index name="fk__empresa__empresa1_idx" columns="ce_id_matriz"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="cnpj_empresa_UNIQUE" columns="cnpj_empresa"/>
+    </unique-constraints>
+    <id name="idEmpresa" type="bigint" column="id_empresa">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="cnpjEmpresa" type="string" column="cnpj_empresa" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="inscrEstEmpresa" type="string" column="inscr_est_empresa" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nomeFantasia" type="string" column="nome_fantasia" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="razaoSocial" type="string" column="razao_social" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dataAbertura" type="date" column="data_abertura" nullable="true"/>
+    <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
+    <field name="ativa" type="integer" column="ativa" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="ceMatriz" target-entity="Empresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_matriz" referenced-column-name="id_empresa"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceTipoEmpresa" target-entity="DominioTipoEmpresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_tipo_empresa" referenced-column-name="id_dominio_tipo_empresa"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceTamEmpresa" target-entity="DominioTamEmpresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_tam_empresa" referenced-column-name="id_dominio_tam_empresa"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

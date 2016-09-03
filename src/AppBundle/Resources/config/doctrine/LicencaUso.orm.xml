@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\LicencaUso" table="licenca_uso">
+    <id name="idLicencaUso" type="integer" column="id_licenca_uso">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dtEmissao" type="datetime" column="dt_emissao" nullable="false"/>
+    <field name="dtLiberacao" type="datetime" column="dt_liberacao" nullable="false"/>
+    <field name="prazoExpiracao" type="integer" column="prazo_expiracao" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="precoLicenca" type="decimal" column="preco_licenca" precision="18" scale="2" nullable="false"/>
+    <field name="ativo" type="integer" column="ativo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

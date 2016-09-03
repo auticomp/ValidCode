@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dispositivo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descricaomodelo</th>
+                <th>Numeroserie</th>
+                <th>Macaddress</th>
+                <th>Iddispositivo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dispositivo in dispositivos %}
+            <tr>
+                <td><a href="{{ path('dispositivo_show', { 'id': dispositivo.idDispositivo }) }}">{{ dispositivo.descricaoModelo }}</a></td>
+                <td>{{ dispositivo.numeroSerie }}</td>
+                <td>{{ dispositivo.macAddress }}</td>
+                <td>{{ dispositivo.idDispositivo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dispositivo_show', { 'id': dispositivo.idDispositivo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dispositivo_edit', { 'id': dispositivo.idDispositivo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dispositivo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

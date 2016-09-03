@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Usuarios" table="usuario">
+    <indexes>
+      <index name="fk__usuarios__perfil_usuario_idx" columns="ce_perfil_usuario"/>
+    </indexes>
+    <id name="idUsuario" type="bigint" column="id_usuario">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomeUsuario" type="string" column="nome_usuario" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="emailUsuario" type="string" column="email_usuario" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="senhaUsuario" type="string" column="senha_usuario" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
+    <field name="ativo" type="integer" column="ativo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="cePerfilUsuario" target-entity="PerfilUsuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_perfil_usuario" referenced-column-name="id_perfil_usuario"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

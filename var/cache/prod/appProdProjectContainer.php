@@ -176,9 +176,21 @@ class appProdProjectContainer extends Container
             'swiftmailer.mailer.default.transport.eventdispatcher' => 'getSwiftmailer_Mailer_Default_Transport_EventdispatcherService',
             'swiftmailer.mailer.default.transport.real' => 'getSwiftmailer_Mailer_Default_Transport_RealService',
             'templating' => 'getTemplatingService',
+            'templating.engine.php' => 'getTemplating_Engine_PhpService',
             'templating.filename_parser' => 'getTemplating_FilenameParserService',
+            'templating.globals' => 'getTemplating_GlobalsService',
+            'templating.helper.actions' => 'getTemplating_Helper_ActionsService',
+            'templating.helper.assets' => 'getTemplating_Helper_AssetsService',
+            'templating.helper.code' => 'getTemplating_Helper_CodeService',
+            'templating.helper.form' => 'getTemplating_Helper_FormService',
             'templating.helper.logout_url' => 'getTemplating_Helper_LogoutUrlService',
+            'templating.helper.request' => 'getTemplating_Helper_RequestService',
+            'templating.helper.router' => 'getTemplating_Helper_RouterService',
             'templating.helper.security' => 'getTemplating_Helper_SecurityService',
+            'templating.helper.session' => 'getTemplating_Helper_SessionService',
+            'templating.helper.slots' => 'getTemplating_Helper_SlotsService',
+            'templating.helper.stopwatch' => 'getTemplating_Helper_StopwatchService',
+            'templating.helper.translator' => 'getTemplating_Helper_TranslatorService',
             'templating.loader' => 'getTemplating_LoaderService',
             'templating.locator' => 'getTemplating_LocatorService',
             'templating.name_parser' => 'getTemplating_NameParserService',
@@ -329,7 +341,7 @@ class appProdProjectContainer extends Container
      */
     protected function getCache_SystemService()
     {
-        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('jbV730++t0', '', '5LTckqESsJH4RBzYVL635Q', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['cache.system'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('jbV730++t0', '', '348RNRgzYHDOTfaaZYndEw', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /*
@@ -346,7 +358,7 @@ class appProdProjectContainer extends Container
         $a->addPool($this->get('cache.app'));
         $a->addPool($this->get('cache.system'));
         $a->addPool($this->get('cache.validator'));
-        $a->addPool(\Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('x86+EcZiWB', '', '5LTckqESsJH4RBzYVL635Q', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
+        $a->addPool(\Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('x86+EcZiWB', '', '348RNRgzYHDOTfaaZYndEw', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
 
         return $this->services['cache_clearer'] = new \Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer(array(0 => $a));
     }
@@ -447,7 +459,7 @@ class appProdProjectContainer extends Container
         $a = new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this);
         $a->addEventListener(array(0 => 'loadClassMetadata'), $this->get('doctrine.orm.default_listeners.attach_entity_listeners'));
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'symfony', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), new \Doctrine\DBAL\Configuration(), $a, array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => 'localhost', 'port' => 3306, 'dbname' => 'validcode_db', 'user' => 'root', 'password' => 123, 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), new \Doctrine\DBAL\Configuration(), $a, array());
     }
 
     /*
@@ -473,22 +485,28 @@ class appProdProjectContainer extends Container
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        $a = new \Doctrine\ORM\Configuration();
-        $a->setEntityNamespaces(array());
-        $a->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
-        $a->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
-        $a->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
-        $a->setMetadataDriverImpl(new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain());
-        $a->setProxyDir((__DIR__.'/doctrine/orm/Proxies'));
-        $a->setProxyNamespace('Proxies');
-        $a->setAutoGenerateProxyClasses(false);
-        $a->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $a->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $a->setNamingStrategy(new \Doctrine\ORM\Mapping\UnderscoreNamingStrategy());
-        $a->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
-        $a->setEntityListenerResolver($this->get('doctrine.orm.default_entity_listener_resolver'));
+        $a = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array(($this->targetDirs[3].'\\src\\AppBundle\\Resources\\config\\doctrine') => 'AppBundle\\Entity'));
+        $a->setGlobalBasename('mapping');
 
-        $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $a);
+        $b = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
+        $b->addDriver($a, 'AppBundle\\Entity');
+
+        $c = new \Doctrine\ORM\Configuration();
+        $c->setEntityNamespaces(array('AppBundle' => 'AppBundle\\Entity'));
+        $c->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
+        $c->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
+        $c->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
+        $c->setMetadataDriverImpl($b);
+        $c->setProxyDir((__DIR__.'/doctrine/orm/Proxies'));
+        $c->setProxyNamespace('Proxies');
+        $c->setAutoGenerateProxyClasses(false);
+        $c->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $c->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $c->setNamingStrategy(new \Doctrine\ORM\Mapping\UnderscoreNamingStrategy());
+        $c->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
+        $c->setEntityListenerResolver($this->get('doctrine.orm.default_entity_listener_resolver'));
+
+        $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $c);
 
         $this->get('doctrine.orm.default_manager_configurator')->configure($instance);
 
@@ -1362,7 +1380,6 @@ class appProdProjectContainer extends Container
 
         $instance->addRendererService('inline', 'fragment.renderer.inline');
         $instance->addRendererService('hinclude', 'fragment.renderer.hinclude');
-        $instance->addRendererService('hinclude', 'fragment.renderer.hinclude');
         $instance->addRendererService('esi', 'fragment.renderer.esi');
         $instance->addRendererService('ssi', 'fragment.renderer.ssi');
 
@@ -1409,7 +1426,7 @@ class appProdProjectContainer extends Container
      */
     protected function getFragment_Renderer_HincludeService()
     {
-        $this->services['fragment.renderer.hinclude'] = $instance = new \Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer($this->get('twig'), $this->get('uri_signer'), NULL);
+        $this->services['fragment.renderer.hinclude'] = $instance = new \Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer($this->get('templating'), $this->get('uri_signer'), NULL);
 
         $instance->setFragmentPath('/_fragment');
 
@@ -1903,7 +1920,7 @@ class appProdProjectContainer extends Container
         $k = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($f, $i, array(), $a);
         $k->setOptions(array('login_path' => 'login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($h, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.in_memory')), 'main', $a, $c, $d), 2 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $i, 'main', $j, $k, array('check_path' => 'login', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 3 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57b94dc407adf5.06318086', $a, $g), 4 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $h, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $d, $i, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $i, 'login', false), NULL, NULL, $a, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($h, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.in_memory')), 'main', $a, $c, $d), 2 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $i, 'main', $j, $k, array('check_path' => 'login', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 3 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57cae359c23728.07198139', $a, $g), 4 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $h, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $d, $i, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $i, 'login', false), NULL, NULL, $a, false));
     }
 
     /*
@@ -2279,7 +2296,7 @@ class appProdProjectContainer extends Container
 
         $this->services['swiftmailer.mailer.default.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), $this->get('swiftmailer.mailer.default.transport.eventdispatcher'));
 
-        $instance->setHost('127.0.0.1');
+        $instance->setHost('localhost');
         $instance->setPort(25);
         $instance->setEncryption(NULL);
         $instance->setTimeout(30);
@@ -2294,11 +2311,16 @@ class appProdProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return \Symfony\Bundle\TwigBundle\TwigEngine A Symfony\Bundle\TwigBundle\TwigEngine instance
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine A Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine instance
      */
     protected function getTemplatingService()
     {
-        return $this->services['templating'] = new \Symfony\Bundle\TwigBundle\TwigEngine($this->get('twig'), $this->get('templating.name_parser'), $this->get('templating.locator'));
+        $this->services['templating'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine($this, array());
+
+        $instance->addEngine(new \Symfony\Bundle\TwigBundle\TwigEngine($this->get('twig'), $this->get('templating.name_parser'), $this->get('templating.locator')));
+        $instance->addEngine($this->get('templating.engine.php'));
+
+        return $instance;
     }
 
     /*
@@ -2315,6 +2337,71 @@ class appProdProjectContainer extends Container
     }
 
     /*
+     * Gets the 'templating.globals' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables A Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables instance
+     */
+    protected function getTemplating_GlobalsService()
+    {
+        return $this->services['templating.globals'] = new \Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables($this);
+    }
+
+    /*
+     * Gets the 'templating.helper.actions' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper instance
+     */
+    protected function getTemplating_Helper_ActionsService()
+    {
+        return $this->services['templating.helper.actions'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper($this->get('fragment.handler'));
+    }
+
+    /*
+     * Gets the 'templating.helper.assets' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper instance
+     */
+    protected function getTemplating_Helper_AssetsService()
+    {
+        return $this->services['templating.helper.assets'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper($this->get('assets.packages'));
+    }
+
+    /*
+     * Gets the 'templating.helper.code' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper instance
+     */
+    protected function getTemplating_Helper_CodeService()
+    {
+        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, ($this->targetDirs[3].'\\app'), 'UTF-8');
+    }
+
+    /*
+     * Gets the 'templating.helper.form' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper instance
+     */
+    protected function getTemplating_Helper_FormService()
+    {
+        return $this->services['templating.helper.form'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper(new \Symfony\Component\Form\FormRenderer(new \Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine($this->get('templating.engine.php'), array(0 => 'FrameworkBundle:Form')), $this->get('security.csrf.token_manager', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
+    }
+
+    /*
      * Gets the 'templating.helper.logout_url' service.
      *
      * This service is shared.
@@ -2328,6 +2415,32 @@ class appProdProjectContainer extends Container
     }
 
     /*
+     * Gets the 'templating.helper.request' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper instance
+     */
+    protected function getTemplating_Helper_RequestService()
+    {
+        return $this->services['templating.helper.request'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper($this->get('request_stack'));
+    }
+
+    /*
+     * Gets the 'templating.helper.router' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper instance
+     */
+    protected function getTemplating_Helper_RouterService()
+    {
+        return $this->services['templating.helper.router'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper($this->get('router'));
+    }
+
+    /*
      * Gets the 'templating.helper.security' service.
      *
      * This service is shared.
@@ -2338,6 +2451,58 @@ class appProdProjectContainer extends Container
     protected function getTemplating_Helper_SecurityService()
     {
         return $this->services['templating.helper.security'] = new \Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper($this->get('security.authorization_checker', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /*
+     * Gets the 'templating.helper.session' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper instance
+     */
+    protected function getTemplating_Helper_SessionService()
+    {
+        return $this->services['templating.helper.session'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper($this->get('request_stack'));
+    }
+
+    /*
+     * Gets the 'templating.helper.slots' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Component\Templating\Helper\SlotsHelper A Symfony\Component\Templating\Helper\SlotsHelper instance
+     */
+    protected function getTemplating_Helper_SlotsService()
+    {
+        return $this->services['templating.helper.slots'] = new \Symfony\Component\Templating\Helper\SlotsHelper();
+    }
+
+    /*
+     * Gets the 'templating.helper.stopwatch' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper instance
+     */
+    protected function getTemplating_Helper_StopwatchService()
+    {
+        return $this->services['templating.helper.stopwatch'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper($this->get('debug.stopwatch', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /*
+     * Gets the 'templating.helper.translator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper A Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper instance
+     */
+    protected function getTemplating_Helper_TranslatorService()
+    {
+        return $this->services['templating.helper.translator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper($this->get('translator'));
     }
 
     /*
@@ -2912,7 +3077,7 @@ class appProdProjectContainer extends Container
      */
     protected function getUriSignerService()
     {
-        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('1ccd6af4a2ca8d765ba5be68caa7c2dd');
     }
 
     /*
@@ -3005,7 +3170,7 @@ class appProdProjectContainer extends Container
      */
     protected function getCache_ValidatorService()
     {
-        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('zohmolco3Y', '', '5LTckqESsJH4RBzYVL635Q', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['cache.validator'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('zohmolco3Y', '', '348RNRgzYHDOTfaaZYndEw', (__DIR__.'/pools'), $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /*
@@ -3079,7 +3244,7 @@ class appProdProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.in_memory'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57b94dc407adf5.06318086')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.in_memory'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57cae359c23728.07198139')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3189,6 +3354,28 @@ class appProdProjectContainer extends Container
     }
 
     /*
+     * Gets the 'templating.engine.php' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * This service is private.
+     * If you want to be able to request this service from the container directly,
+     * make it public, otherwise you might end up with broken code.
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Templating\PhpEngine A Symfony\Bundle\FrameworkBundle\Templating\PhpEngine instance
+     */
+    protected function getTemplating_Engine_PhpService()
+    {
+        $this->services['templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\PhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('templating.globals'));
+
+        $instance->setCharset('UTF-8');
+        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'assets' => 'templating.helper.assets', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security'));
+
+        return $instance;
+    }
+
+    /*
      * Gets the 'templating.locator' service.
      *
      * This service is shared.
@@ -3293,20 +3480,20 @@ class appProdProjectContainer extends Container
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdProjectContainer',
-            'database_host' => '127.0.0.1',
-            'database_port' => NULL,
-            'database_name' => 'symfony',
+            'database_host' => 'localhost',
+            'database_port' => 3306,
+            'database_name' => 'validcode_db',
             'database_user' => 'root',
-            'database_password' => NULL,
+            'database_password' => 123,
             'mailer_transport' => 'smtp',
-            'mailer_host' => '127.0.0.1',
+            'mailer_host' => 'localhost',
             'mailer_user' => NULL,
             'mailer_password' => NULL,
-            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'secret' => '1ccd6af4a2ca8d765ba5be68caa7c2dd',
             'locale' => 'en',
             'fragment.renderer.hinclude.global_template' => NULL,
             'fragment.path' => '/_fragment',
-            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'kernel.secret' => '1ccd6af4a2ca8d765ba5be68caa7c2dd',
             'kernel.http_method_override' => true,
             'kernel.trusted_hosts' => array(
 
@@ -3328,6 +3515,10 @@ class appProdProjectContainer extends Container
             'templating.loader.cache.path' => NULL,
             'templating.engines' => array(
                 0 => 'twig',
+                1 => 'php',
+            ),
+            'templating.helper.form.resources' => array(
+                0 => 'FrameworkBundle:Form',
             ),
             'validator.mapping.cache.prefix' => 'validator_44cfd79b0b72763d03ec7deb5ff9db6649d347b59574e761052826e78ec4866e',
             'validator.translation_domain' => 'validators',
@@ -3432,7 +3623,7 @@ class appProdProjectContainer extends Container
             'swiftmailer.mailer.default.delivery.enabled' => true,
             'swiftmailer.mailer.default.transport.smtp.encryption' => NULL,
             'swiftmailer.mailer.default.transport.smtp.port' => 25,
-            'swiftmailer.mailer.default.transport.smtp.host' => '127.0.0.1',
+            'swiftmailer.mailer.default.transport.smtp.host' => 'localhost',
             'swiftmailer.mailer.default.transport.smtp.username' => NULL,
             'swiftmailer.mailer.default.transport.smtp.password' => NULL,
             'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,

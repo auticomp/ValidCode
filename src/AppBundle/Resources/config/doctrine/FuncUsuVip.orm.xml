@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\FuncUsuVip" table="func_usu_vip">
+    <indexes>
+      <index name="fk__func_usu_vip__usuarios1_idx" columns="ce_id_usuario"/>
+      <index name="fk__func_usu_vip__funcionalidade1_idx" columns="ce_id_funcionalidade"/>
+    </indexes>
+    <id name="idFuncUsuVip" type="bigint" column="id_func_usu_vip">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
+    <many-to-one field="ceUsuario" target-entity="Usuarios" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_usuario" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceFuncionalidade" target-entity="Funcionalidade" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_funcionalidade" referenced-column-name="id_funcionalidade"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

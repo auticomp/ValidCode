@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\FuncionalidadeModuloUsuario" table="funcionalidade_modulo_usuario">
+    <indexes>
+      <index name="fk_funcionalidade_modulo_usuario__funcionalidade1_idx" columns="ce_id_funcionalidade"/>
+      <index name="fk_funcionalidade_modulo_usuario__modulo1_idx" columns="ce_id_modulo"/>
+      <index name="fk_funcionalidade_modulo_usuario__perfil_usuario1_idx" columns="ce_id_perfil"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="uk_func_mod_user" columns="ce_id_funcionalidade,ce_id_modulo,ce_id_perfil"/>
+    </unique-constraints>
+    <id name="idFuncModUser" type="bigint" column="id_func_mod_user">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="visualizar" type="integer" column="visualizar" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="editar" type="integer" column="editar" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="excluir" type="integer" column="excluir" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="incluir" type="integer" column="incluir" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
+    <field name="ativo" type="integer" column="ativo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="cePerfil" target-entity="PerfilUsuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_perfil" referenced-column-name="id_perfil_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceModulo" target-entity="Modulo" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_modulo" referenced-column-name="id_modulo"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceFuncionalidade" target-entity="Funcionalidade" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_funcionalidade" referenced-column-name="id_funcionalidade"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -25,6 +25,12 @@
 	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	    <![endif]-->     
          
+         <link rel="stylesheet" href="{{ asset('public/vendor/datatables/media/css/jquery.dataTables.css') }}" />
+         
+         <link rel="stylesheet" href="{{ asset('public/vendor/datatables/media/css/dataTables.bootstrap.css') }}" />
+         
+         
+         
         
         <!-- Main -->
         <link rel="stylesheet" href="{{ asset('public/css/sb-admin-2.css') }}" />
@@ -272,25 +278,40 @@
 	                            <!-- /input-group -->
 	                        </li>
 	                        <li>
-	                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+	                            <a href="{{ asset('#') }}"><i class="fa fa-dashboard fa-fw fa-2x"></i> Dashboard</a>
 	                        </li>
 	                        <li>
-	                            <a href="lotes"><i class="fa fa-table fa-fw"></i> Lotes</a>
+	                            <a href="{{ asset('lote') }}"><i class="fa fa-table fa-fw fa-2x"></i> Lotes</a>
 	                        </li>
 	                        <li>
-	                            <a href="forms.html"><i class="fa fa-users fa-fw"></i> Usuarios</a>
-	                        </li>
-	                        <li>
-	                            <a href="forms.html"><i class="fa fa-users fa-fw"></i> Dispositivos</a>
-	                        </li>
-	                        <li>
-	                            <a href="#relatorios"><i class="fa fa-bar-chart-o fa-fw"></i> Relatorios<span class="fa arrow"></span></a>
+	                            <a href="#usuarios"><i class="fa fa-users fa-fw fa-2x"></i> Usuarios <span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
-	                                <li>
-	                                    <a href="flot.html">Dispositivos</a>
+	                            	<li>
+	                                    <a href="{{ asset('usuarios') }}"><i class="fa fa-user fa-fw fa-2x"></i> Gerenciar Usuario</a>
 	                                </li>
 	                                <li>
-	                                    <a href="morris.html">Usuarios</a>
+	                                    <a href="{{ asset('perfilusuario') }}"><i class="fa fa-inbox fa-fw  fa-2x"></i> Perfil Usuario</a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li>
+	                            <a href="{{ asset('dispositivo') }}"><i class="fa fa-mobile fa-fw fa-2x"></i> Equipamentos</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ asset('licenca') }}"><i class="fa fa-money fa-fw fa-2x"></i> Planos</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ asset('empresa') }}"><i class="fa fa-building-o fa-fw fa-2x"></i> Empresa</a>
+	                        </li>
+	                        
+	                        <li>
+	                            <a href="#relatorios"><i class="fa fa-cogs fa-fw fa-2x"></i> Recursos<span class="fa arrow"></span></a>
+	                            <ul class="nav nav-second-level">
+	                                <li>
+	                                    <a href="flot.html">Perfil Empresa</a>
+	                                </li>
+	                                <li>
+	                                    <a href="morris.html">Perfil Usuario</a>
 	                                </li>
 	                                <li>
 	                                    <a href="morris.html">Coletas e contagens</a>
@@ -327,6 +348,7 @@
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/js/jquery/dist/jquery.js') }}"></script>
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/metisMenu/dist/metisMenu.js') }}"></script>
+        <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
         

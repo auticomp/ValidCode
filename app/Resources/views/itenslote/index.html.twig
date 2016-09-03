@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ItensLote list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Descricao</th>
+                <th>Nrocodigobarra</th>
+                <th>Dtcoleta</th>
+                <th>Iditenslote</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for itensLote in itensLotes %}
+            <tr>
+                <td><a href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}">{{ itensLote.descricao }}</a></td>
+                <td>{{ itensLote.nroCodigoBarra }}</td>
+                <td>{% if itensLote.dtColeta %}{{ itensLote.dtColeta|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ itensLote.idItensLote }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('itenslote_edit', { 'id': itensLote.idItensLote }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('itenslote_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

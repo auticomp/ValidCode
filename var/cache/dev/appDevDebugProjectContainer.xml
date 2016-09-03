@@ -24,20 +24,20 @@
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
-    <parameter key="database_host">127.0.0.1</parameter>
-    <parameter key="database_port">null</parameter>
-    <parameter key="database_name">symfony</parameter>
+    <parameter key="database_host">localhost</parameter>
+    <parameter key="database_port">3306</parameter>
+    <parameter key="database_name">validcode_db</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">null</parameter>
+    <parameter key="database_password">123</parameter>
     <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">127.0.0.1</parameter>
+    <parameter key="mailer_host">localhost</parameter>
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
-    <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="secret">1ccd6af4a2ca8d765ba5be68caa7c2dd</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
-    <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="kernel.secret">1ccd6af4a2ca8d765ba5be68caa7c2dd</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.trusted_proxies" type="collection"/>
@@ -55,6 +55,10 @@
     <parameter key="templating.loader.cache.path">null</parameter>
     <parameter key="templating.engines" type="collection">
       <parameter>twig</parameter>
+      <parameter>php</parameter>
+    </parameter>
+    <parameter key="templating.helper.form.resources" type="collection">
+      <parameter>FrameworkBundle:Form</parameter>
     </parameter>
     <parameter key="validator.mapping.cache.prefix"></parameter>
     <parameter key="validator.translation_domain">validators</parameter>
@@ -167,7 +171,7 @@
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">localhost</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
@@ -488,7 +492,7 @@
                   <tag name="cache.pool"/>
                   <argument>ygQW+1KvP4</argument>
                   <argument></argument>
-                  <argument>UsVCZ9kJFuF-L7nImRB0wA</argument>
+                  <argument>OSU+eh+PGcmMXLK+-m3DHg</argument>
                   <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\var\cache\dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -501,7 +505,7 @@
                   <tag name="cache.pool"/>
                   <argument>tQku-kriLC</argument>
                   <argument></argument>
-                  <argument>UsVCZ9kJFuF-L7nImRB0wA</argument>
+                  <argument>OSU+eh+PGcmMXLK+-m3DHg</argument>
                   <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\var\cache\dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -523,7 +527,7 @@
       <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\app/Resources</argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
-      <argument>ThisTokenIsNotSoSecretChangeIt</argument>
+      <argument>1ccd6af4a2ca8d765ba5be68caa7c2dd</argument>
     </service>
     <service id="config_cache_factory" class="Symfony\Component\Config\ResourceCheckerConfigCacheFactory">
       <argument type="collection">
@@ -541,10 +545,6 @@
       <call method="addRendererService">
         <argument>inline</argument>
         <argument>fragment.renderer.inline</argument>
-      </call>
-      <call method="addRendererService">
-        <argument>hinclude</argument>
-        <argument>fragment.renderer.hinclude</argument>
       </call>
       <call method="addRendererService">
         <argument>hinclude</argument>
@@ -569,8 +569,7 @@
     </service>
     <service id="fragment.renderer.hinclude" class="Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer">
       <tag name="kernel.fragment_renderer" alias="hinclude"/>
-      <tag name="kernel.fragment_renderer" alias="hinclude"/>
-      <argument type="service" id="twig"/>
+      <argument type="service" id="templating"/>
       <argument type="service" id="uri_signer"/>
       <argument>null</argument>
       <call method="setFragmentPath">
@@ -833,7 +832,7 @@
       <tag name="cache.pool"/>
       <argument>0k3M65b-7+</argument>
       <argument></argument>
-      <argument>UsVCZ9kJFuF-L7nImRB0wA</argument>
+      <argument>OSU+eh+PGcmMXLK+-m3DHg</argument>
       <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1091,6 +1090,62 @@
     <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
       <argument type="service" id="file_locator"/>
       <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\var\cache\dev</argument>
+    </service>
+    <service id="templating.helper.slots" class="Symfony\Component\Templating\Helper\SlotsHelper">
+      <tag name="templating.helper" alias="slots"/>
+    </service>
+    <service id="templating.helper.request" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper">
+      <tag name="templating.helper" alias="request"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="templating.helper.session" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper">
+      <tag name="templating.helper" alias="session"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="templating.helper.router" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper">
+      <tag name="templating.helper" alias="router"/>
+      <argument type="service" id="router"/>
+    </service>
+    <service id="templating.helper.assets" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper">
+      <tag name="templating.helper" alias="assets"/>
+      <argument type="service" id="assets.packages"/>
+    </service>
+    <service id="templating.helper.actions" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper">
+      <tag name="templating.helper" alias="actions"/>
+      <argument type="service" id="fragment.handler"/>
+    </service>
+    <service id="templating.helper.code" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper">
+      <tag name="templating.helper" alias="code"/>
+      <argument>null</argument>
+      <argument>C:\jcvpalma\xampps\htdocs\validcode_dev\app</argument>
+      <argument>UTF-8</argument>
+    </service>
+    <service id="templating.helper.translator" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper">
+      <tag name="templating.helper" alias="translator"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="templating.helper.form" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper">
+      <tag name="templating.helper" alias="form"/>
+      <argument type="service">
+        <service class="Symfony\Component\Form\FormRenderer" public="false">
+          <argument type="service">
+            <service class="Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine" public="false">
+              <argument type="service" id="debug.templating.engine.php"/>
+              <argument type="collection">
+                <argument>FrameworkBundle:Form</argument>
+              </argument>
+            </service>
+          </argument>
+          <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
+        </service>
+      </argument>
+    </service>
+    <service id="templating.helper.stopwatch" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper">
+      <tag name="templating.helper" alias="stopwatch"/>
+      <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
+    </service>
+    <service id="templating.globals" class="Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables">
+      <argument type="service" id="service_container"/>
     </service>
     <service id="validator" class="Symfony\Component\Validator\Validator\ValidatorInterface">
       <factory service="validator.builder" method="getValidator"/>
@@ -1578,7 +1633,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57b928ba8da337.93712131</argument>
+            <argument>57cae133d46a43.31625234</argument>
           </service>
         </argument>
       </argument>
@@ -1787,7 +1842,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57b928ba8da337.93712131</argument>
+            <argument>57cae133d46a43.31625234</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2097,11 +2152,11 @@
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection">
       <argument type="collection">
         <argument key="driver">pdo_mysql</argument>
-        <argument key="host">127.0.0.1</argument>
-        <argument key="port">null</argument>
-        <argument key="dbname">symfony</argument>
+        <argument key="host">localhost</argument>
+        <argument key="port">3306</argument>
+        <argument key="dbname">validcode_db</argument>
         <argument key="user">root</argument>
-        <argument key="password">null</argument>
+        <argument key="password">123</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -2186,7 +2241,9 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="AppBundle">AppBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2199,7 +2256,21 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="C:\jcvpalma\xampps\htdocs\validcode_dev\src\AppBundle\Resources\config\doctrine">AppBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>AppBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">
@@ -2536,12 +2607,49 @@
     <service id="templating.loader" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\FilesystemLoader">
       <argument type="service" id="templating.locator"/>
     </service>
-    <service id="templating" class="Symfony\Bundle\TwigBundle\TwigEngine">
-      <argument type="service" id="twig"/>
-      <argument type="service" id="templating.name_parser"/>
-      <argument type="service" id="templating.locator"/>
+    <service id="templating" class="Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine">
+      <argument type="service" id="service_container"/>
+      <argument type="collection"/>
+      <call method="addEngine">
+        <argument type="service">
+          <service class="Symfony\Bundle\TwigBundle\TwigEngine" public="false">
+            <argument type="service" id="twig"/>
+            <argument type="service" id="templating.name_parser"/>
+            <argument type="service" id="templating.locator"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addEngine">
+        <argument type="service" id="debug.templating.engine.php"/>
+      </call>
       <autowiring-type>Symfony\Component\Templating\EngineInterface</autowiring-type>
       <autowiring-type>Symfony\Bundle\FrameworkBundle\Templating\EngineInterface</autowiring-type>
+    </service>
+    <service id="debug.templating.engine.php" class="Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine">
+      <argument type="service" id="templating.name_parser"/>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="templating.loader"/>
+      <argument type="service" id="debug.stopwatch"/>
+      <argument type="service" id="templating.globals"/>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setHelpers">
+        <argument type="collection">
+          <argument key="slots">templating.helper.slots</argument>
+          <argument key="request">templating.helper.request</argument>
+          <argument key="session">templating.helper.session</argument>
+          <argument key="router">templating.helper.router</argument>
+          <argument key="assets">templating.helper.assets</argument>
+          <argument key="actions">templating.helper.actions</argument>
+          <argument key="code">templating.helper.code</argument>
+          <argument key="translator">templating.helper.translator</argument>
+          <argument key="form">templating.helper.form</argument>
+          <argument key="stopwatch">templating.helper.stopwatch</argument>
+          <argument key="logout_url">templating.helper.logout_url</argument>
+          <argument key="security">templating.helper.security</argument>
+        </argument>
+      </call>
     </service>
     <service id="cache.default_redis_provider" class="Redis">
       <argument>redis://localhost</argument>
@@ -2698,7 +2806,7 @@
       </argument>
       <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>localhost</argument>
       </call>
       <call method="setPort">
         <argument>25</argument>

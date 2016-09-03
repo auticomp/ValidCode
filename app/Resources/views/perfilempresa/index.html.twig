@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PerfilEmpresa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Alliasempresa</th>
+                <th>Dtcadastro</th>
+                <th>Ativo</th>
+                <th>Idperfilempresa</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for perfilEmpresa in perfilEmpresas %}
+            <tr>
+                <td><a href="{{ path('perfilempresa_show', { 'id': perfilEmpresa.idPerfilEmpresa }) }}">{{ perfilEmpresa.alliasEmpresa }}</a></td>
+                <td>{% if perfilEmpresa.dtCadastro %}{{ perfilEmpresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ perfilEmpresa.ativo }}</td>
+                <td>{{ perfilEmpresa.idPerfilEmpresa }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('perfilempresa_show', { 'id': perfilEmpresa.idPerfilEmpresa }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('perfilempresa_edit', { 'id': perfilEmpresa.idPerfilEmpresa }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('perfilempresa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

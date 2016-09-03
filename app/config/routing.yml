@@ -1,3 +1,31 @@
+app_perfil_empresa:
+    resource: "@AppBundle/Controller/PerfilEmpresaController.php"
+    type:     annotation
+
+app_dispositivo:
+    resource: "@AppBundle/Controller/DispositivoController.php"
+    type:     annotation
+
+app_itens_lote:
+    resource: "@AppBundle/Controller/ItensLoteController.php"
+    type:     annotation
+
+app_licenca_uso:
+    resource: "@AppBundle/Controller/LicencaUsoController.php"
+    type:     annotation
+
+app_lote:
+    resource: "@AppBundle/Controller/LoteController.php"
+    type:     annotation
+
+app_empresa:
+    resource: "@AppBundle/Controller/EmpresaController.php"
+    type:     annotation
+
+app_perfil_usuario:
+    resource: "@AppBundle/Controller/PerfilUsuarioController.php"
+    type:     annotation
+
 api_valid_code:
     resource: "@apiValidCodeBundle/Resources/config/routing.yml"
     prefix:   /
@@ -9,3 +37,8 @@ app:
 app_auth:
     resource: "@AppBundle/Resources/config/routing/auth.php"
     prefix:   /
+    
+
+app_usuarios:
+    resource: "@AppBundle/Resources/config/routing/usuarios.php"
+    prefix:   /usuarios
