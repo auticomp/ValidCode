@@ -7,7 +7,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 	    
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bem vindo ao sistema de Gest&atilde;o de Coletas e Contagens!{% endblock %}</title>
        
         <!-- Bootswatch -->
         <link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}" />
@@ -18,20 +18,8 @@
         <!-- MeetMenu -->
         <link rel="stylesheet" href="{{ asset('public/vendor/metisMenu/dist/metisMenu.min.css') }}" />
         
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
-	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->     
+        <link rel="stylesheet" href="{{ asset('public/vendor/datatables/media/css/dataTables.bootstrap.css') }}" />
          
-         <link rel="stylesheet" href="{{ asset('public/vendor/datatables/media/css/jquery.dataTables.css') }}" />
-         
-         <link rel="stylesheet" href="{{ asset('public/vendor/datatables/media/css/dataTables.bootstrap.css') }}" />
-         
-         
-         
-        
         <!-- Main -->
         <link rel="stylesheet" href="{{ asset('public/css/sb-admin-2.css') }}" />
         <link rel="stylesheet" href="{{ asset('public/css/timeline.css') }}" />
@@ -59,8 +47,55 @@
 	                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
 	            </div>
 	            <!-- /.navbar-header -->
-	
-	            <ul class="nav navbar-top-links navbar-right">
+
+	 		<div class="navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav navbar-primary navbar-left" role="navigation">
+					<li><a href="{{ asset('#') }}"> 
+							<i class="fa fa-dashboard fa-fw fa-2x"></i> Dashboard
+						</a>
+					</li>
+					<li><a href="{{ asset('lote') }}"> 
+						<i class="fa fa-table fa-fw fa-2x"></i> Lotes
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#usuarios" class="dropdown-toggle" data-toggle="dropdown"> 
+							<i class="fa fa-users fa-fw fa-2x"></i>
+							Usuarios <span class="fa arrow"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ asset('usuarios') }}">
+								<i class="fa fa-user fa-fw fa-2x"></i> Gerenciar Usuario</a>
+							</li>
+							<li><a href="{{ asset('perfilusuario') }}">
+								<i class="fa fa-inbox fa-fw  fa-2x"></i> Perfil Usuario</a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="{{ asset('dispositivo') }}">
+						<i class="fa fa-mobile fa-fw fa-2x"></i> Equipamentos</a>
+					</li>
+					<li><a href="{{ asset('licenca') }}">
+						<i class="fa fa-money fa-fw fa-2x"></i> Planos</a>
+					</li>
+					<li><a href="{{ asset('empresa') }}">
+						<i class="fa fa-building-o fa-fw fa-2x"></i> Empresa</a>
+					</li>
+					<li>
+						<a href="#relatorios" class="dropdown-toggle" data-toggle="dropdown"> 
+							<i class="fa fa-cogs fa-fw fa-2x"></i> Recursos<span class="fa arrow"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="flot.html">Perfil Empresa</a></li>
+							<li><a href="morris.html">Perfil Usuario</a></li>
+							<li><a href="morris.html">Coletas e contagens</a></li>
+						</ul> 
+						<!-- /.nav-second-level -->
+					</li>
+				</ul>
+				
+			
+			<ul class="nav navbar-top-links navbar-right">
 	                <li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -269,61 +304,8 @@
 	                <!-- /.dropdown -->
 	            </ul>
 	            <!-- /.navbar-top-links -->
-	
-	            <div class="navbar-primary sidebar" role="navigation">
-	                <div class="sidebar-nav navbar-collapse">
-	                    <ul class="nav" id="side-menu">
-	                        <li class="sidebar-search">
-	                            &nbsp;
-	                            <!-- /input-group -->
-	                        </li>
-	                        <li>
-	                            <a href="{{ asset('#') }}"><i class="fa fa-dashboard fa-fw fa-2x"></i> Dashboard</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ asset('lote') }}"><i class="fa fa-table fa-fw fa-2x"></i> Lotes</a>
-	                        </li>
-	                        <li>
-	                            <a href="#usuarios"><i class="fa fa-users fa-fw fa-2x"></i> Usuarios <span class="fa arrow"></span></a>
-	                            <ul class="nav nav-second-level">
-	                            	<li>
-	                                    <a href="{{ asset('usuarios') }}"><i class="fa fa-user fa-fw fa-2x"></i> Gerenciar Usuario</a>
-	                                </li>
-	                                <li>
-	                                    <a href="{{ asset('perfilusuario') }}"><i class="fa fa-inbox fa-fw  fa-2x"></i> Perfil Usuario</a>
-	                                </li>
-	                            </ul>
-	                        </li>
-	                        <li>
-	                            <a href="{{ asset('dispositivo') }}"><i class="fa fa-mobile fa-fw fa-2x"></i> Equipamentos</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ asset('licenca') }}"><i class="fa fa-money fa-fw fa-2x"></i> Planos</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ asset('empresa') }}"><i class="fa fa-building-o fa-fw fa-2x"></i> Empresa</a>
-	                        </li>
-	                        
-	                        <li>
-	                            <a href="#relatorios"><i class="fa fa-cogs fa-fw fa-2x"></i> Recursos<span class="fa arrow"></span></a>
-	                            <ul class="nav nav-second-level">
-	                                <li>
-	                                    <a href="flot.html">Perfil Empresa</a>
-	                                </li>
-	                                <li>
-	                                    <a href="morris.html">Perfil Usuario</a>
-	                                </li>
-	                                <li>
-	                                    <a href="morris.html">Coletas e contagens</a>
-	                                </li>
-	                            </ul>
-	                            <!-- /.nav-second-level -->
-	                        </li>
-	                    </ul>
-	                </div>
-	                <!-- /.sidebar-collapse -->
-	            </div>
-	            <!-- /.navbar-static-side -->
+	            <!--  /. fim navbar -->
+			</div>
 	        </nav>
 	    	<!-- nav //-->
 	    	<!-- Page Content -->
@@ -349,6 +331,7 @@
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/metisMenu/dist/metisMenu.js') }}"></script>
         <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+        <script type="text/javascript" type="text/javascript" src="{{ asset('public/vendor/datatables/media/js/jquery.dataTables-pt-BR.js') }}"></script>
         
         {% block javascripts %}{% endblock %}
         

@@ -18,6 +18,7 @@
 			<tr>
 				<th>Emailusuario</th>
 				<th>Senhausuario</th>
+				<th>Nome do Usuario</th>
 				<th>Dtcadastro</th>
 				<th>Ativo</th>
 				<th>Idusuario</th>
@@ -31,6 +32,7 @@
 					href="{{ path('usuarios_show', { 'id': usuario.idUsuario }) }}">{{
 						usuario.emailUsuario }}</a></td>
 				<td>{{ usuario.senhaUsuario }}</td>
+				<td>{{ usuario.nomeUsuario }}</td>
 				<td>{% if usuario.dtCadastro %}{{ usuario.dtCadastro|date('Y-m-d
 					H:i:s') }}{% endif %}</td>
 				<td>{{ usuario.ativo }}</td>

@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Entity\PerfilUsuario;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UsuariosType extends AbstractType
@@ -19,7 +22,9 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	
-    	$choices = array('text'=>'Selecione', 'values'=>'');
+    	$perfils = new PerfilUsuario();
+    	
+    	$choices = $perfils->getPerfilUsuario();
     	
         $builder
             ->add('nomeUsuario', TextType::class, [
@@ -46,12 +51,14 @@ class UsuariosType extends AbstractType
 				        'data-date-format' => 'dd/mm/yyyy'
 				    ]
             	]) 
-            ->add('ativo')
+            ->add('ativo')*/
             ->add('cePerfilUsuario', CollectionType::class, [
-            		'label' => 'Perfil de Usuario',
-            		'data' => $choices
-            ])*/
-        ;
+            		'label' => 'Perfil do Usuario',
+            		'attr' => [
+            				'class' => 'form-control'
+            		]
+            		
+            ]);
     }
     
     /**

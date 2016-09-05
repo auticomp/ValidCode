@@ -50,7 +50,7 @@ class PerfilUsuarioController extends Controller
             $em->persist($perfilUsuario);
             $em->flush();
 
-            return $this->redirectToRoute('perfilusuario_show', array('id' => $perfilUsuario->getId()));
+            return $this->redirectToRoute('perfilusuario_show', array('id' => $perfilUsuario->getIdPerfilUsuario()));
         }
 
         return $this->render('perfilusuario/new.html.twig', array(
@@ -92,7 +92,7 @@ class PerfilUsuarioController extends Controller
             $em->persist($perfilUsuario);
             $em->flush();
 
-            return $this->redirectToRoute('perfilusuario_edit', array('id' => $perfilUsuario->getId()));
+            return $this->redirectToRoute('perfilusuario_edit', array('id' => $perfilUsuario->getIdPerfilUsuario()));
         }
 
         return $this->render('perfilusuario/edit.html.twig', array(
@@ -132,7 +132,7 @@ class PerfilUsuarioController extends Controller
     private function createDeleteForm(PerfilUsuario $perfilUsuario)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('perfilusuario_delete', array('id' => $perfilUsuario->getId())))
+            ->setAction($this->generateUrl('perfilusuario_delete', array('id' => $perfilUsuario->getIdPerfilUsuario())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -7,8 +7,9 @@
 		<hr />
 	</div>
 	
-	<div class="col-md-12">
+	<div class="col-md-12 text-right">
 		<a href="{{ path('perfilusuario_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+		<a href="#" class="btn btn-primary btn-sm"> <i class="fa fa-trash"></i> Excluir</a>
 	</div>
 	
 	<div class="col-md-12">
@@ -16,27 +17,25 @@
 	<table id="tbPerfisIndex" class="table table-borderer table-stripped table-hover">
         <thead>
             <tr>
-                <th>Perfilusuario</th>
+            	<th>ID</th>
+                <th>Perfil</th>
                 <th>Ativo</th>
-                <th>Idperfilusuario</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for perfilUsuario in perfilUsuarios %}
             <tr>
+            	<td>{{ perfilUsuario.idPerfilUsuario }}</td>
                 <td><a href="{{ path('perfilusuario_show', { 'id': perfilUsuario.idPerfilUsuario }) }}">{{ perfilUsuario.perfilUsuario }}</a></td>
                 <td>{{ perfilUsuario.ativo }}</td>
-                <td>{{ perfilUsuario.idPerfilUsuario }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('perfilusuario_show', { 'id': perfilUsuario.idPerfilUsuario }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('perfilusuario_edit', { 'id': perfilUsuario.idPerfilUsuario }) }}">edit</a>
-                        </li>
-                    </ul>
+                	<a class="btn btn-link" href="{{ path('perfilusuario_delete', { 'id': perfilUsuario.idPerfilUsuario }) }}"> 
+                		<i class="fa fa-trash"></i>
+                	</a>
+                	<a class="btn btn-link" href="{{ path('perfilusuario_edit', { 'id': perfilUsuario.idPerfilUsuario }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
                 </td>
             </tr>
         {% endfor %}
