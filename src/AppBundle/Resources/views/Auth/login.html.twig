@@ -1,6 +1,6 @@
 {% extends "::auth.html.twig" %} 
 
-{% block title %}Login{% endblock %} 
+{% block title %}Acesso :: ValidCode{% endblock %} 
 
 {% block body %}
 
@@ -22,7 +22,7 @@
 					<input class="form-control" placeholder="Digite sua senha" id="_password" name="_password"
 						type="password" />
 				</div>
-				
+				<input type="hidden" name="_target_path" value="index" />
 			</form>
 		</div>
 		<div class="panel-footer">

@@ -1,16 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Dispositivo creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+<div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('dispositivo_index') }}">Back to the list</a>
-        </li>
-    </ul>
+	<div class="col-md-12">
+		<h3>
+			Home > <a href="{{ path('dispositivo_index') }}">Listagem de Dispositivos</a> / <a
+				href="">Cadastro de Dispositivo</a>
+		</h3>
+		<hr />
+	</div>
+
+	<div class="col-md-12 text-right">
+		<a class="btn btn-primary btn-sm" href="{{ path('dispositivo_index') }}"> <i
+			class="fa fa-backward"></i> Voltar para a Lista
+		</a>
+	</div>
+
+	<div class="col-md-12">
+		<hr />
+		<div class="col-lg-4"></div>
+		<div class="col-lg-8">
+			{{ form_start(form) }} 
+			
+				{{ form_widget(form) }}
+
+			<div class="col-lg-12 text-right">
+				<hr />
+				<button class="btn btn-default btn-sm" type="reset" value="Limpar">
+					<i class="fa fa-erase"></i> Limpar
+				</button>
+				<button class="btn btn-primary btn-sm" type="submit" value="Create"
+					data-loading-text="Salvando...">
+					<i class="fa fa-save"></i> Salvar
+				</button>
+			</div>
+
+			{{ form_end(form) }}
+		</div>
+
+
+	</div>
+
+</div>
+    
 {% endblock %}

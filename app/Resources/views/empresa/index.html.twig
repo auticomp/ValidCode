@@ -1,25 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Empresa list</h1>
-
-    <table>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Home > <a href="">Listagem de Empresas</a></h3>
+		<hr />
+	</div>
+	
+	<div class="col-md-12 text-right">
+		<a href="{{ path('empresa_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+		<a href="#" class="btn btn-info btn-sm"> <i class="fa fa-trash"></i> Excluir</a>
+	</div>
+	
+	<div class="col-md-12">
+	<br>
+	<table id="tbEmpresaIndex" class="table table-borderer table-striped table-hover">
         <thead>
             <tr>
-                <th>Cnpjempresa</th>
-                <th>Inscrestempresa</th>
-                <th>Nomefantasia</th>
-                <th>Razaosocial</th>
-                <th>Dataabertura</th>
-                <th>Dtcadastro</th>
+            	<th>ID</th>
+                <th>CNPJ</th>
+                <th>Inscr.Estadual</th>
+                <th>NNome Fantasia</th>
+                <th>Razão Social</th>
+                <th>Dt. Abertura</th>
+                <th>Dt. Cadastro</th>
                 <th>Ativa</th>
-                <th>Idempresa</th>
-                <th>Actions</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
         {% for empresa in empresas %}
             <tr>
+                <td>{{ empresa.idEmpresa }}</td>
                 <td><a href="{{ path('empresa_show', { 'id': empresa.idEmpresa }) }}">{{ empresa.cnpjEmpresa }}</a></td>
                 <td>{{ empresa.inscrEstEmpresa }}</td>
                 <td>{{ empresa.nomeFantasia }}</td>
@@ -27,7 +39,6 @@
                 <td>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ empresa.ativa }}</td>
-                <td>{{ empresa.idEmpresa }}</td>
                 <td>
                     <ul>
                         <li>
@@ -42,10 +53,22 @@
         {% endfor %}
         </tbody>
     </table>
+	</div>
+	
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('empresa_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+ 
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tbEmpresaIndex").dataTable();
+	});
+</script>
 {% endblock %}

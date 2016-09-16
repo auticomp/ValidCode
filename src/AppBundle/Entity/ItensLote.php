@@ -61,6 +61,114 @@ class ItensLote
      * })
      */
     private $ceLote;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getDescricao() {
+		return $this->descricao;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$descricao
+	 */
+	public function setDescricao($descricao) {
+		$this->descricao = $descricao;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getNroCodigoBarra() {
+		return $this->nroCodigoBarra;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$nroCodigoBarra
+	 */
+	public function setNroCodigoBarra($nroCodigoBarra) {
+		$this->nroCodigoBarra = $nroCodigoBarra;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtColeta() {
+		return $this->dtColeta;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtColeta        	
+	 */
+	public function setDtColeta(\DateTime $dtColeta) {
+		$this->dtColeta = $dtColeta;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdItensLote() {
+		return $this->idItensLote;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idItensLote
+	 */
+	public function setIdItensLote($idItensLote) {
+		$this->idItensLote = $idItensLote;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Usuarios
+	 */
+	public function getCeUsuario() {
+		return $this->ceUsuario;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceUsuario
+	 */
+	public function setCeUsuario($ceUsuario) {
+		$this->ceUsuario = $ceUsuario;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Lote
+	 */
+	public function getCeLote() {
+		return $this->ceLote;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceLote
+	 */
+	public function setCeLote($ceLote) {
+		$this->ceLote = $ceLote;
+		return $this;
+	}
+	
 
 
 }

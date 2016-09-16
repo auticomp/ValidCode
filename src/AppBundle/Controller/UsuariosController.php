@@ -24,7 +24,7 @@ class UsuariosController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $usuarios = $em->getRepository('AppBundle:Usuarios')->findAll();
-
+        
         return $this->render('usuarios/index.html.twig', array(
             'usuarios' => $usuarios,
         ));

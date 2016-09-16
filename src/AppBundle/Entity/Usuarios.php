@@ -3,14 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use AppBundle\Repository;
 
 /**
  * Usuario
- *
  * @ORM\Table(name="usuario", indexes={@ORM\Index(name="fk__usuarios__perfil_usuario_idx", columns={"ce_perfil_usuario"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository") 
  */
-class Usuarios
+class Usuarios implements UserInterface, \Serializable
 {
     /**
      * @var string
@@ -116,7 +118,7 @@ class Usuarios
 	 *        	$senhaUsuario
 	 */
 	public function setSenhaUsuario($senhaUsuario) {
-		$this->senhaUsuario = $senhaUsuario;
+		$this->senhaUsuario = md5($senhaUsuario);
 		return $this;
 	}
 	
@@ -193,5 +195,66 @@ class Usuarios
 	
 
 
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
+	 */
+	public function getRoles() {
+		// TODO: Auto-generated method stub
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::getPassword()
+	 */
+	public function getPassword() {
+		// TODO: Auto-generated method stub
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::getSalt()
+	 */
+	public function getSalt() {
+		// TODO: Auto-generated method stub
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::getUsername()
+	 */
+	public function getUsername() {
+		// TODO: Auto-generated method stub
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
+	 */
+	public function eraseCredentials() {
+		// TODO: Auto-generated method stub
+
+	}
+
+	public function serialize () {
+		return serialize(array(
+				$this->ativo
+		));
+	}
+	
+	/**
+	 * @param $serialized
+	 */
+	public function unserialize ($serialized) {
+		list (
+			$this->ativo
+		) = unserialize($serialized);
+	}
+	
+	
 }
 

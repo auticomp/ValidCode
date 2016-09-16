@@ -5,6 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ItensLoteType extends AbstractType
 {
@@ -15,11 +18,33 @@ class ItensLoteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descricao')
-            ->add('nroCodigoBarra')
-            ->add('dtColeta', 'datetime')
-            ->add('ceUsuario')
-            ->add('ceLote')
+            ->add('descricao', TextType::class, [
+            		'label' => utf8_encode('Descrição'),
+            		'attr' => [
+            				'class' => 'form-control'
+            		]
+            ])
+            ->add('nroCodigoBarra', TextType::class, [
+            		'label' => utf8_encode('Nro. Código de Barras'),
+            		'attr' => [
+            				'class' => 'form-control'
+            		]
+            ])
+            ->add('dtColeta', DateType::class, [
+            		'label' => 'Dt. Coleta',
+            		'html5' => true,
+            		'widget' => 'single_text',
+            		'attr' => [
+            				'class' => 'form-control'
+            		]
+            ])
+            //->add('ceUsuario')
+            ->add('ceLote', ChoiceType::class, [
+            		'label' => 'Selecione o Lote',
+            		'attr' => [
+            			'class' => 'form-control'	
+            		]
+            ])
         ;
     }
     

@@ -163,8 +163,10 @@ class Lote
 	 *
 	 * @param \DateTime $dtFechamento        	
 	 */
-	public function setDtFechamento(\DateTime $dtFechamento) {
-		$this->dtFechamento = $dtFechamento;
+	public function setDtFechamento(\DateTime $dtFechamento = null) {
+		if(!$dtFechamento == null){
+			$this->dtFechamento = $dtFechamento;
+		}
 		return $this;
 	}
 	
@@ -180,8 +182,10 @@ class Lote
 	 *
 	 * @param \DateTime $dtExclusao        	
 	 */
-	public function setDtExclusao(\DateTime $dtExclusao) {
-		$this->dtExclusao = $dtExclusao;
+	public function setDtExclusao(\DateTime $dtExclusao = null) {
+		if(!$dtExclusao == null){
+			$this->dtExclusao = $dtExclusao;
+		}
 		return $this;
 	}
 	

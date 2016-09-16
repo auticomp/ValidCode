@@ -1,6 +1,9 @@
-<?php
+<?php 
 
 namespace AppBundle\Controller;
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -41,16 +44,19 @@ class LoteController extends Controller
      */
     public function newAction(Request $request)
     {
+    	
+    	
         $lote = new Lote();
         $form = $this->createForm('AppBundle\Form\LoteType', $lote);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
             $em->persist($lote);
             $em->flush();
 
-            return $this->redirectToRoute('lote_show', array('id' => $lote->getId()));
+            return $this->redirectToRoute('lote_show', array('id' => $lote->getIdLote()));
         }
 
         return $this->render('lote/new.html.twig', array(
@@ -92,7 +98,7 @@ class LoteController extends Controller
             $em->persist($lote);
             $em->flush();
 
-            return $this->redirectToRoute('lote_edit', array('id' => $lote->getId()));
+            return $this->redirectToRoute('lote_edit', array('id' => $lote->getIdLote()));
         }
 
         return $this->render('lote/edit.html.twig', array(
@@ -132,7 +138,7 @@ class LoteController extends Controller
     private function createDeleteForm(Lote $lote)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('lote_delete', array('id' => $lote->getId())))
+            ->setAction($this->generateUrl('lote_delete', array('id' => $lote->getIdLote())))
             ->setMethod('DELETE')
             ->getForm()
         ;

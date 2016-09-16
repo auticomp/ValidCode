@@ -1241,7 +1241,7 @@ $fs->setLogger($logger);
 if (!ApcuAdapter::isSupported()) {
 return $fs;
 }
-$apcu = new ApcuAdapter($namespace, $defaultLifetime / 5, $version);
+$apcu = new ApcuAdapter($namespace, (int) $defaultLifetime / 5, $version);
 if (null !== $logger) {
 $apcu->setLogger($logger);
 }
@@ -1347,9 +1347,6 @@ public function save(CacheItemInterface $item)
 if (!$item instanceof CacheItem) {
 return false;
 }
-if ($this->deferred) {
-$this->commit();
-}
 $this->deferred[$item->getKey()] = $item;
 return $this->commit();
 }
@@ -1414,6 +1411,23 @@ if ($this->deferred) {
 $this->commit();
 }
 }
+protected static function unserialize($value)
+{
+if ('b:0;'=== $value) {
+return false;
+}
+$unserializeCallbackHandler = ini_set('unserialize_callback_func', __CLASS__.'::handleUnserializeCallback');
+try {
+if (false !== $value = unserialize($value)) {
+return $value;
+}
+throw new \DomainException('Failed to unserialize cached value');
+} catch (\Error $e) {
+throw new \ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
+} finally {
+ini_set('unserialize_callback_func', $unserializeCallbackHandler);
+}
+}
 private function getId($key)
 {
 CacheItem::validateKey($key);
@@ -1422,13 +1436,22 @@ return $this->namespace.$key;
 private function generateItems($items, &$keys)
 {
 $f = $this->createCacheItem;
+try {
 foreach ($items as $id => $value) {
-yield $keys[$id] => $f($keys[$id], $value, true);
+$key = $keys[$id];
 unset($keys[$id]);
+yield $key => $f($key, $value, true);
+}
+} catch (\Exception $e) {
+CacheItem::log($this->logger,'Failed to fetch requested items', array('keys'=> array_values($keys),'exception'=> $e));
 }
 foreach ($keys as $key) {
 yield $key => $f($key, null, false);
 }
+}
+public static function handleUnserializeCallback($class)
+{
+throw new \DomainException('Class not found: '.$class);
 }
 }
 }
@@ -3831,7 +3854,7 @@ namespace
 {
 class Twig_Environment
 {
-const VERSION ='1.24.1';
+const VERSION ='1.24.2';
 protected $charset;
 protected $loader;
 protected $debug;
@@ -5925,6 +5948,17 @@ throw new \InvalidArgumentException('Exception/Throwable expected, got '.gettype
 }
 $data = array('class'=> get_class($e),'message'=> $e->getMessage(),'code'=> $e->getCode(),'file'=> $e->getFile().':'.$e->getLine(),
 );
+if ($e instanceof \SoapFault) {
+if (isset($e->faultcode)) {
+$data['faultcode'] = $e->faultcode;
+}
+if (isset($e->faultactor)) {
+$data['faultactor'] = $e->faultactor;
+}
+if (isset($e->detail)) {
+$data['detail'] = $e->detail;
+}
+}
 $trace = $e->getTrace();
 foreach ($trace as $frame) {
 if (isset($frame['file'])) {

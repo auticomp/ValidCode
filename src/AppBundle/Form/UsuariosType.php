@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use AppBundle\Entity\PerfilUsuario;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UsuariosType extends AbstractType
 {
@@ -41,10 +41,13 @@ class UsuariosType extends AbstractType
             				'placeholder' => 'Digite o e-mail'
             		]
             ])
-            /*->add('senhaUsuario',[
-            		'label' => 'Senha'
+            ->add('senhaUsuario',PasswordType::class, [
+            		'label' => 'Senha',
+            		'attr' => [
+            			'class' => 'form-control'	
+            		]
             ])
-             ->add('dtCadastro', DateType::class, [
+            /* ->add('dtCadastro', DateType::class, [
             		'attr' => [
 				        'class' => 'form-control input-inline datepicker',
 				        'data-provide' => 'datepicker',
@@ -52,8 +55,11 @@ class UsuariosType extends AbstractType
 				    ]
             	]) 
             ->add('ativo')*/
-            ->add('cePerfilUsuario', CollectionType::class, [
+            ->add('cePerfilUsuario', EntityType::class, [
             		'label' => 'Perfil do Usuario',
+            		'class' => 'AppBundle:PerfilUsuario',
+            		'choice_label' => 'perfilUsuario',
+            		'choice_value' => 'idPerfilUsuario',
             		'attr' => [
             				'class' => 'form-control'
             		]

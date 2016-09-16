@@ -55,6 +55,113 @@ class LicencaUso
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idLicencaUso;
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtEmissao() {
+		return $this->dtEmissao;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtEmissao        	
+	 */
+	public function setDtEmissao(\DateTime $dtEmissao) {
+		$this->dtEmissao = $dtEmissao;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtLiberacao() {
+		return $this->dtLiberacao;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtLiberacao        	
+	 */
+	public function setDtLiberacao(\DateTime $dtLiberacao) {
+		$this->dtLiberacao = $dtLiberacao;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getPrazoExpiracao() {
+		return $this->prazoExpiracao;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$prazoExpiracao
+	 */
+	public function setPrazoExpiracao($prazoExpiracao) {
+		$this->prazoExpiracao = $prazoExpiracao;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getPrecoLicenca() {
+		return $this->precoLicenca;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$precoLicenca
+	 */
+	public function setPrecoLicenca($precoLicenca) {
+		$this->precoLicenca = $precoLicenca;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ativo
+	 */
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdLicencaUso() {
+		return $this->idLicencaUso;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idLicencaUso
+	 */
+	public function setIdLicencaUso($idLicencaUso) {
+		$this->idLicencaUso = $idLicencaUso;
+		return $this;
+	}
+	
 
 
 }

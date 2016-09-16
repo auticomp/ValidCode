@@ -50,7 +50,7 @@ class EmpresaController extends Controller
             $em->persist($empresa);
             $em->flush();
 
-            return $this->redirectToRoute('empresa_show', array('id' => $empresa->getId()));
+            return $this->redirectToRoute('empresa_show', array('id' => $empresa->getIdEmpresa()));
         }
 
         return $this->render('empresa/new.html.twig', array(
@@ -92,7 +92,7 @@ class EmpresaController extends Controller
             $em->persist($empresa);
             $em->flush();
 
-            return $this->redirectToRoute('empresa_edit', array('id' => $empresa->getId()));
+            return $this->redirectToRoute('empresa_edit', array('id' => $empresa->getIdEmpresa()));
         }
 
         return $this->render('empresa/edit.html.twig', array(
@@ -132,7 +132,7 @@ class EmpresaController extends Controller
     private function createDeleteForm(Empresa $empresa)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('empresa_delete', array('id' => $empresa->getId())))
+            ->setAction($this->generateUrl('empresa_delete', array('id' => $empresa->getIdEmpresa())))
             ->setMethod('DELETE')
             ->getForm()
         ;
