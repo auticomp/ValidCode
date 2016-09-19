@@ -42,6 +42,68 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
         not_validcode_index:
 
+        if (0 === strpos($pathinfo, '/importacaolote')) {
+            // importacaolote_index
+            if (rtrim($pathinfo, '/') === '/importacaolote') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_importacaolote_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'importacaolote_index');
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\ArquivoLoteController::indexAction',  '_route' => 'importacaolote_index',);
+            }
+            not_importacaolote_index:
+
+            // importacaolote_new
+            if ($pathinfo === '/importacaolote/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_importacaolote_new;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\ArquivoLoteController::newAction',  '_route' => 'importacaolote_new',);
+            }
+            not_importacaolote_new:
+
+            // importacaolote_show
+            if (preg_match('#^/importacaolote/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_importacaolote_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'importacaolote_show')), array (  '_controller' => 'AppBundle\\Controller\\ArquivoLoteController::showAction',));
+            }
+            not_importacaolote_show:
+
+            // importacaolote_edit
+            if (preg_match('#^/importacaolote/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_importacaolote_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'importacaolote_edit')), array (  '_controller' => 'AppBundle\\Controller\\ArquivoLoteController::editAction',));
+            }
+            not_importacaolote_edit:
+
+            // importacaolote_delete
+            if (preg_match('#^/importacaolote/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_importacaolote_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'importacaolote_delete')), array (  '_controller' => 'AppBundle\\Controller\\ArquivoLoteController::deleteAction',));
+            }
+            not_importacaolote_delete:
+
+        }
+
         // login
         if ($pathinfo === '/Login') {
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::LoginAction',  '_route' => 'login',);

@@ -27,6 +27,43 @@ class DominioTamEmpresa
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idDominioTamEmpresa;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getTamanhoEmpresa() {
+		return $this->tamanhoEmpresa;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$tamanhoEmpresa
+	 */
+	public function setTamanhoEmpresa($tamanhoEmpresa) {
+		$this->tamanhoEmpresa = $tamanhoEmpresa;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdDominioTamEmpresa() {
+		return $this->idDominioTamEmpresa;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idDominioTamEmpresa
+	 */
+	public function setIdDominioTamEmpresa($idDominioTamEmpresa) {
+		$this->idDominioTamEmpresa = $idDominioTamEmpresa;
+		return $this;
+	}
+	
 
 
 }

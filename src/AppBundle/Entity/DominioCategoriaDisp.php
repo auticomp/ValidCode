@@ -27,6 +27,43 @@ class DominioCategoriaDisp
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idDominioCategoriaDisp;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getCategoriaDisp() {
+		return $this->categoriaDisp;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$categoriaDisp
+	 */
+	public function setCategoriaDisp($categoriaDisp) {
+		$this->categoriaDisp = $categoriaDisp;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdDominioCategoriaDisp() {
+		return $this->idDominioCategoriaDisp;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idDominioCategoriaDisp
+	 */
+	public function setIdDominioCategoriaDisp($idDominioCategoriaDisp) {
+		$this->idDominioCategoriaDisp = $idDominioCategoriaDisp;
+		return $this;
+	}
+	
 
 
 }

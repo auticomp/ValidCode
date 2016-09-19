@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Empresa
  *
- * @ORM\Table(name="empresa", uniqueConstraints={@ORM\UniqueConstraint(name="cnpj_empresa_UNIQUE", columns={"cnpj_empresa"})}, indexes={@ORM\Index(name="fk__empresa__dominio_tipo_empresa1_idx", columns={"ce_tipo_empresa"}), @ORM\Index(name="fk__empresa__dominio_tam_empresa1_idx", columns={"ce_tam_empresa"}), @ORM\Index(name="fk__empresa__empresa1_idx", columns={"ce_id_matriz"})})
+ * @ORM\Table(name="empresa", uniqueConstraints={@ORM\UniqueConstraint(name="cnpj_empresa_UNIQUE", columns={"cnpj_empresa"})}, indexes={@ORM\Index(name="fk__empresas__dominio_tipo_empresa1_idx", columns={"ce_tipo_empresa"}), @ORM\Index(name="fk__empresas__dominio_tam_empresa1_idx", columns={"ce_tam_empresa"}), @ORM\Index(name="fk__empresas__empresas1_idx", columns={"ce_id_matriz"})})
  * @ORM\Entity
  */
 class Empresa
@@ -39,6 +39,13 @@ class Empresa
      * @ORM\Column(name="razao_social", type="string", length=45, nullable=false)
      */
     private $razaoSocial;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ce_id_matriz", type="bigint", nullable=true)
+     */
+    private $ceIdMatriz;
 
     /**
      * @var \DateTime
@@ -169,6 +176,24 @@ class Empresa
 	 */
 	public function setRazaoSocial($razaoSocial) {
 		$this->razaoSocial = $razaoSocial;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getCeIdMatriz() {
+		return $this->ceIdMatriz;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceIdMatriz
+	 */
+	public function setCeIdMatriz($ceIdMatriz) {
+		$this->ceIdMatriz = $ceIdMatriz;
 		return $this;
 	}
 	

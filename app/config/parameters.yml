@@ -7,19 +7,6 @@ parameters:
     database_password: 123
     mailer_transport: smtp
     mailer_host: localhost
-    mailer_user: null
-    mailer_password: null
+    mailer_user: suporte@validcode.com.br
+    mailer_password: bfOxZ79FIB
     secret: 1ccd6af4a2ca8d765ba5be68caa7c2dd
-
-# This file is auto-generated during the composer install
-#parameters:
-#    database_host: localhost
-#    database_port: 3306
-#    database_name: u532899173_vcode
-#    database_user: u532899173_vcode
-#    database_password: 0tZZhTPRvJ
-#    mailer_transport: smtp
-#    mailer_host: localhost
-#    mailer_user: null
-#    mailer_password: null
-#    secret: 1ccd6af4a2ca8d765ba5be68caa7c2dd

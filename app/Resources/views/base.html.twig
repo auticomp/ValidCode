@@ -49,19 +49,31 @@
 	            <!-- /.navbar-header -->
 
 	 		<div class="navbar-collapse" role="navigation">
-				<ul class="nav navbar-nav navbar-primary navbar-left" role="navigation">
+				<ul class="nav navbar-nav navbar-primary navbar-right" role="navigation" style="margin-right: 10px;">
 					<li><a href="{{ asset('#') }}"> 
 							<i class="fa fa-dashboard fa-fw fa-2x"></i> Dashboard
 						</a>
 					</li>
-					<li><a href="{{ asset('lote') }}"> 
-						<i class="fa fa-table fa-fw fa-2x"></i> Lotes
+					<li class="dropdown">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+							<i class="fa fa-table fa-fw fa-2x"></i> Lotes <i class="fa fa-caret-down"></i>
 						</a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ asset('lote') }}">
+								<i class="fa fa-user fa-fw fa-2x"></i> Gerenciar Lotes</a>
+							</li>
+							<li><a href="{{ asset('itenslote') }}">
+								<i class="fa fa-inbox fa-fw  fa-2x"></i>Itens de Lote</a>
+							</li>
+							<li><a href="{{ asset('importacaolote') }}">
+								<i class="fa fa-file-text fa-fw  fa-2x"></i>Arquivo de Lote</a>
+							</li>
+						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#usuarios" class="dropdown-toggle" data-toggle="dropdown"> 
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
 							<i class="fa fa-users fa-fw fa-2x"></i>
-							Usuarios <span class="fa arrow"></span>
+							Usuarios&nbsp;<i class="fa fa-caret-down"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ asset('usuarios') }}">
@@ -81,9 +93,9 @@
 					<li><a href="{{ asset('empresa') }}">
 						<i class="fa fa-building-o fa-fw fa-2x"></i> Empresa</a>
 					</li>
-					<li>
-						<a href="#relatorios" class="dropdown-toggle" data-toggle="dropdown"> 
-							<i class="fa fa-cogs fa-fw fa-2x"></i> Recursos<span class="fa arrow"></span>
+					<li class="dropdown">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+							<i class="fa fa-cogs fa-fw fa-2x"></i> Recursos&nbsp;<i class="fa fa-caret-down"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="flot.html">Perfil Empresa</a></li>
@@ -92,13 +104,9 @@
 						</ul> 
 						<!-- /.nav-second-level -->
 					</li>
-				</ul>
-				
-			
-			<ul class="nav navbar-top-links navbar-right">
-	                <li class="dropdown">
+					<li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+	                        <i class="fa fa-envelope fa-fw fa-2x"></i>  <i class="fa fa-caret-down"></i>
 	                    </a>
 	                    <ul class="dropdown-menu dropdown-messages">
 	                        <li>
@@ -147,148 +155,11 @@
 	                    <!-- /.dropdown-messages -->
 	                </li>
 	                <!-- /.dropdown -->
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-	                    </a>
-	                    <ul class="dropdown-menu dropdown-tasks">
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <p>
-	                                        <strong>Task 1</strong>
-	                                        <span class="pull-right text-muted">40% Complete</span>
-	                                    </p>
-	                                    <div class="progress progress-striped active">
-	                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-	                                            <span class="sr-only">40% Complete (success)</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <p>
-	                                        <strong>Task 2</strong>
-	                                        <span class="pull-right text-muted">20% Complete</span>
-	                                    </p>
-	                                    <div class="progress progress-striped active">
-	                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-	                                            <span class="sr-only">20% Complete</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <p>
-	                                        <strong>Task 3</strong>
-	                                        <span class="pull-right text-muted">60% Complete</span>
-	                                    </p>
-	                                    <div class="progress progress-striped active">
-	                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-	                                            <span class="sr-only">60% Complete (warning)</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <p>
-	                                        <strong>Task 4</strong>
-	                                        <span class="pull-right text-muted">80% Complete</span>
-	                                    </p>
-	                                    <div class="progress progress-striped active">
-	                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-	                                            <span class="sr-only">80% Complete (danger)</span>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a class="text-center" href="#">
-	                                <strong>See All Tasks</strong>
-	                                <i class="fa fa-angle-right"></i>
-	                            </a>
-	                        </li>
-	                    </ul>
-	                    <!-- /.dropdown-tasks -->
-	                </li>
+	                
 	                <!-- /.dropdown -->
 	                <li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-	                    </a>
-	                    <ul class="dropdown-menu dropdown-alerts">
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <i class="fa fa-comment fa-fw"></i> New Comment
-	                                    <span class="pull-right text-muted small">4 minutes ago</span>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-	                                    <span class="pull-right text-muted small">12 minutes ago</span>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-	                                    <span class="pull-right text-muted small">4 minutes ago</span>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <i class="fa fa-tasks fa-fw"></i> New Task
-	                                    <span class="pull-right text-muted small">4 minutes ago</span>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a href="#">
-	                                <div>
-	                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-	                                    <span class="pull-right text-muted small">4 minutes ago</span>
-	                                </div>
-	                            </a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li>
-	                            <a class="text-center" href="#">
-	                                <strong>See All Alerts</strong>
-	                                <i class="fa fa-angle-right"></i>
-	                            </a>
-	                        </li>
-	                    </ul>
-	                    <!-- /.dropdown-alerts -->
-	                </li>
-	                <!-- /.dropdown -->
-	                <li class="dropdown">
-	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+	                        <i class="fa fa-user fa-fw fa-2x"></i>  <i class="fa fa-caret-down"></i>
 	                    </a>
 	                    <ul class="dropdown-menu dropdown-user">
 	                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -302,15 +173,14 @@
 	                    <!-- /.dropdown-user -->
 	                </li>
 	                <!-- /.dropdown -->
-	            </ul>
-	            <!-- /.navbar-top-links -->
-	            <!--  /. fim navbar -->
+				</ul>				
+			    <!--  /. fim navbar -->
 			</div>
 	        </nav>
 	    	<!-- nav //-->
 	    	<!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+        <div id="page-wrapper" >
+            <div class="container">
                 <div class="row">
            			{% block body %}{% endblock %}
                 </div>

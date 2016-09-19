@@ -4,16 +4,38 @@ namespace AppBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 
-class UsuarioRepository extends EntityRepository
+class UsuariosRepository extends EntityRepository
 {
-	
+	
+	
+	/**
+	 * 
+	 * @param unknown $em
+	 * @param string $class
+	 */
+	public function __construct($em, $class = 'AppBundle:Usuarios'){
+		$this->_em = $em;
+	}
+	/**
+	 * 
+	 * @param unknown $username
+	 */
 	public function loadUserByUsername($username) {
 		
-		return $this->createQueryBuilder('u')
+		$qb = $this->_em->createQueryBuilder();
+				
+		echo $username;
+		
+		$dados = $qb->select('u')
+			->from('AppBundle:Usuarios', 'u')
 			->where('u.emailUsuario = :emailUsuario')
 			->setParameter('emailUsuario', $username)
 			->getQuery()
 			->getOneOrNullResult();
+		
+			print_r($dados);
+			
+			return "";
 	}
 	
 

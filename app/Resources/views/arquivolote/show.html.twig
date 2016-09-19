@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="row">
+
+	<div class="col-md-12">
+		<h3>
+			Home > <a href="{{ path('importacaolote_index') }}">Listagem de Importa&ccedil;&atilde;o de arquivos de Lotes</a> / <a
+				href="">Arquivo Importado</a>
+		</h3>
+		<hr />
+	</div>
+
+	<div class="col-md-12 text-right">
+		<a class="btn btn-primary btn-sm" href="{{ path('lote_index') }}"> <i
+			class="fa fa-backward"></i> Voltar para a Lista
+		</a>
+	</div>
+
+	<div class="col-md-12">
+		<hr />
+		<div class="col-lg-12">
+
+			<div class="col-lg-12">
+				<div class="col-lg-4">
+					<label>ID</label>
+					<div>{{ arquivoLote.idArquivoLote }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Dt Importa&ccedil;&atilde;o</label>
+					<div>{% if arquivoLote.dtImportacao %}{{
+						arquivoLote.dtImportacao|date('Y-m-d H:i:s') }}{% endif %}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Nome do Arquivo</label>
+					<div>{{ arquivoLote.nomeArquivo }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Tamanho/Bytes</label>
+					<div>{{ arquivoLote.tamanhoBytes }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Ativo:</label>
+					<div>{% if arquivoLote.ativo == 1 %} {{ 'Sim' }} {% else %} {{ 'Não' }} {% endif %}</div>
+				</div>
+				
+			</div>
+			
+			<div class="col-lg-6">
+				<br>
+				<a class="btn btn-primary btn-sm" href="{{ path('importacaolote_edit', { 'id':  arquivoLote.idArquivoLote }) }}">
+					<i class="fa fa-edit"></i> Editar
+				</a>
+			</div>
+
+			
+			<div class="col-lg-6 text-right">
+				<br>
+				{{ form_start(delete_form, { 'attr' :{'onclick':'return confirm("Tem certeza que quer remover o registro?")'}}) }}
+	                <button class="btn btn-danger btn-sm" type="submit" value="Delete">
+	                	<i class="fa fa-remove"></i> Excluir
+	                </button>
+	            {{ form_end(delete_form) }}
+			</div>
+		</div>
+
+
+	</div>
+
+</div>
+
+    
+{% endblock %}

@@ -6,24 +6,22 @@
 
 	<div class="col-md-12">
 		<h3>
-			Home > <a href="{{ path('lote_index') }}">Listagem de Lotes</a> / <a
-				href="">Cadastro de Lote</a>
+			Home > <a href="{{ path('importacaolote_index') }}">Listagem de Arquivo de Lotes</a> / <a
+				href="">Edi&ccedil;&atilde;o de arquivo de Lotes</a>
 		</h3>
 		<hr />
 	</div>
 
 	<div class="col-md-12 text-right">
-		<a class="btn btn-primary btn-sm" href="{{ path('lote_index') }}"> <i
+		<a class="btn btn-primary btn-sm" href="{{ path('importacaolote_index') }}"> <i
 			class="fa fa-backward"></i> Voltar para a Lista
 		</a>
 	</div>
 
 	<div class="col-md-12">
 		<hr />
-		<div class="col-lg-4"></div>
 		<div class="col-lg-8">
 			{{ form_start(edit_form) }} {{ form_widget(edit_form) }}
-
 			<hr />
 			<div class="col-lg-6">
 				<button class="btn btn-default btn-sm" type="reset" value="Limpar">
@@ -31,7 +29,7 @@
 				</button>
 				<button class="btn btn-primary btn-sm" type="submit" value="Create"
 					data-loading-text="Salvando...">
-					<i class="fa fa-save"></i> Salvar
+					<i class="fa fa-save"></i> Atualizar
 				</button>
 			</div>
 
@@ -50,5 +48,4 @@
 
 </div>
 
-    
 {% endblock %}

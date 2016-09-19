@@ -1,17 +1,18 @@
-{% extends 'base.html.twig' %} {% block body %}
+{% extends 'base.html.twig' %}
 
+{% block body %}
 <div class="row">
 
 	<div class="col-md-12">
 		<h3>
-			Home > <a href="{{ path('lote_index') }}">Listagem de Lotes</a> / <a
-				href="">Cadastro de Lote</a>
+			Home > <a href="{{ path('importacaolote_index') }}">Listagem de Arquivo de Lotes</a> / <a
+				href="">Importação de arquivo</a>
 		</h3>
 		<hr />
 	</div>
 
 	<div class="col-md-12 text-right">
-		<a class="btn btn-primary btn-sm" href="{{ path('lote_index') }}"> <i
+		<a class="btn btn-primary btn-sm" href="{{ path('importacaolote_index') }}"> <i
 			class="fa fa-backward"></i> Voltar para a Lista
 		</a>
 	</div>
@@ -38,6 +39,5 @@
 	</div>
 
 </div>
-
-
+    
 {% endblock %}

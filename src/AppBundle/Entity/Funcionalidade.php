@@ -48,6 +48,96 @@ class Funcionalidade
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idFuncionalidade;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getUrl() {
+		return $this->url;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$url
+	 */
+	public function setUrl($url) {
+		$this->url = $url;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$titulo
+	 */
+	public function setTitulo($titulo) {
+		$this->titulo = $titulo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ativo
+	 */
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtCadastro() {
+		return $this->dtCadastro;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtCadastro        	
+	 */
+	public function setDtCadastro(\DateTime $dtCadastro) {
+		$this->dtCadastro = $dtCadastro;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdFuncionalidade() {
+		return $this->idFuncionalidade;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idFuncionalidade
+	 */
+	public function setIdFuncionalidade($idFuncionalidade) {
+		$this->idFuncionalidade = $idFuncionalidade;
+		return $this;
+	}
+	
 
 
 }

@@ -27,6 +27,43 @@ class DominioTipoEmpresa
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idDominioTipoEmpresa;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getTipoEmpresa() {
+		return $this->tipoEmpresa;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$tipoEmpresa
+	 */
+	public function setTipoEmpresa($tipoEmpresa) {
+		$this->tipoEmpresa = $tipoEmpresa;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdDominioTipoEmpresa() {
+		return $this->idDominioTipoEmpresa;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idDominioTipoEmpresa
+	 */
+	public function setIdDominioTipoEmpresa($idDominioTipoEmpresa) {
+		$this->idDominioTipoEmpresa = $idDominioTipoEmpresa;
+		return $this;
+	}
+	
 
 
 }

@@ -17,36 +17,31 @@
 	<table id="tbUsuariosIndex" class="table table-borderer table-striped table-hover">
 		<thead>
 			<tr>
-				<th>Emailusuario</th>
-				<th>Senhausuario</th>
-				<th>Nome do Usuario</th>
-				<th>Dtcadastro</th>
-				<th>Ativo</th>
 				<th>Idusuario</th>
+				<th>E-Mail</th>
+				<th>Nome do Usuario</th>
+				<th>Dt.Cadastro</th>
+				<th>Ativo</th>
 				<th>Actions</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 			{% for usuario in usuarios %}
 			<tr>
-				<td><a
-					href="{{ path('usuarios_show', { 'id': usuario.idUsuario }) }}">{{
-						usuario.emailUsuario }}</a></td>
-				<td>{{ usuario.senhaUsuario }}</td>
+				<td>{{ usuario.idUsuario }}</td>
+				<td><a href="{{ path('usuarios_show', { 'id': usuario.idUsuario }) }}">{{ usuario.emailUsuario }}</a></td>
 				<td>{{ usuario.nomeUsuario }}</td>
 				<td>{% if usuario.dtCadastro %}{{ usuario.dtCadastro|date('Y-m-d
 					H:i:s') }}{% endif %}</td>
 				<td>{{ usuario.ativo }}</td>
-				<td>{{ usuario.idUsuario }}</td>
 				<td>
-					<ul>
-						<li><a
-							href="{{ path('usuarios_show', { 'id': usuario.idUsuario }) }}">show</a>
-						</li>
-						<li><a
-							href="{{ path('usuarios_edit', { 'id': usuario.idUsuario }) }}">edit</a>
-						</li>
-					</ul>
+					<a class="btn btn-link" href="{{ path('usuarios_show', { 'id': usuario.idUsuario }) }}"> 
+                		<i class="fa fa-eye"></i>
+                	</a>
+                	<a class="btn btn-link" href="{{ path('usuarios_edit', { 'id': usuario.idUsuario }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
 				</td>
 			</tr>
 			{% endfor %}

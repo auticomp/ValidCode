@@ -1,43 +1,62 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>ItensLote list</h1>
-
-    <table>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Home > <a href="">Listagem de Lotes</a></h3>
+		<hr />
+	</div>
+	
+	<div class="col-md-12 text-right">
+		<a href="{{ path('itenslote_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+	</div>
+	
+	<div class="col-md-12">
+	<br>
+	<table id="tbItensLoteIndex" class="table table-borderer table-striped table-hover">
         <thead>
             <tr>
-                <th>Descricao</th>
-                <th>Nrocodigobarra</th>
-                <th>Dtcoleta</th>
-                <th>Iditenslote</th>
+            	<th>ID</th>
+                <th>Descri&ccedil;&atilde;o</th>
+                <th>Nro. C&oacute;digo de Barras</th>
+                <th>Dt. Coleta</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for itensLote in itensLotes %}
             <tr>
+            	<td>{{ itensLote.idItensLote }}</td>
                 <td><a href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}">{{ itensLote.descricao }}</a></td>
                 <td>{{ itensLote.nroCodigoBarra }}</td>
-                <td>{% if itensLote.dtColeta %}{{ itensLote.dtColeta|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ itensLote.idItensLote }}</td>
+                <td>{% if itensLote.dtColeta %}{{ itensLote.dtColeta|date('d/m/Y H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('itenslote_edit', { 'id': itensLote.idItensLote }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-link" href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}"> 
+                		<i class="fa fa-eye"></i>
+                	</a>
+                	<a class="btn btn-link" href="{{ path('itenslote_edit', { 'id': itensLote.idItensLote }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+	</div>
+	
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('itenslote_new') }}">Create a new entry</a>
-        </li>
-    </ul>
 {% endblock %}
+
+ {% block stylesheets %}
+ 
+ {% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tbItensLoteIndex").dataTable();
+	});
+</script>
+{% endblock %}
+

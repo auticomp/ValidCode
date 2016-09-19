@@ -27,6 +27,43 @@ class DominioMarcaDisp
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idDominioMarcaDisp;
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getMarcaDispositivo() {
+		return $this->marcaDispositivo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$marcaDispositivo
+	 */
+	public function setMarcaDispositivo($marcaDispositivo) {
+		$this->marcaDispositivo = $marcaDispositivo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdDominioMarcaDisp() {
+		return $this->idDominioMarcaDisp;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idDominioMarcaDisp
+	 */
+	public function setIdDominioMarcaDisp($idDominioMarcaDisp) {
+		$this->idDominioMarcaDisp = $idDominioMarcaDisp;
+		return $this;
+	}
+	
 
 
 }

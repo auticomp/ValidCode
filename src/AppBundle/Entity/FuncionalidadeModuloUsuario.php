@@ -92,6 +92,186 @@ class FuncionalidadeModuloUsuario
      * })
      */
     private $ceFuncionalidade;
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getVisualizar() {
+		return $this->visualizar;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$visualizar
+	 */
+	public function setVisualizar($visualizar) {
+		$this->visualizar = $visualizar;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getEditar() {
+		return $this->editar;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$editar
+	 */
+	public function setEditar($editar) {
+		$this->editar = $editar;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getExcluir() {
+		return $this->excluir;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$excluir
+	 */
+	public function setExcluir($excluir) {
+		$this->excluir = $excluir;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIncluir() {
+		return $this->incluir;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$incluir
+	 */
+	public function setIncluir($incluir) {
+		$this->incluir = $incluir;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtCadastro() {
+		return $this->dtCadastro;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtCadastro        	
+	 */
+	public function setDtCadastro(\DateTime $dtCadastro) {
+		$this->dtCadastro = $dtCadastro;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ativo
+	 */
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdFuncModUser() {
+		return $this->idFuncModUser;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idFuncModUser
+	 */
+	public function setIdFuncModUser($idFuncModUser) {
+		$this->idFuncModUser = $idFuncModUser;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the PerfilUsuario
+	 */
+	public function getCePerfil() {
+		return $this->cePerfil;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$cePerfil
+	 */
+	public function setCePerfil($cePerfil) {
+		$this->cePerfil = $cePerfil;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Modulo
+	 */
+	public function getCeModulo() {
+		return $this->ceModulo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceModulo
+	 */
+	public function setCeModulo($ceModulo) {
+		$this->ceModulo = $ceModulo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Funcionalidade
+	 */
+	public function getCeFuncionalidade() {
+		return $this->ceFuncionalidade;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceFuncionalidade
+	 */
+	public function setCeFuncionalidade($ceFuncionalidade) {
+		$this->ceFuncionalidade = $ceFuncionalidade;
+		return $this;
+	}
+	
 
 
 }

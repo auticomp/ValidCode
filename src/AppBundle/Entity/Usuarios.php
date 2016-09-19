@@ -8,9 +8,9 @@ use AppBundle\Repository;
 
 /**
  * Usuario
- * @ORM\Table(name="usuario", indexes={@ORM\Index(name="fk__usuarios__perfil_usuario_idx", columns={"ce_perfil_usuario"})})
+ * @ORM\Table(name="usuarios", indexes={@ORM\Index(name="fk__usuarios__perfil_usuario_idx", columns={"ce_perfil_usuario"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository") 
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuariosRepository") 
  */
 class Usuarios implements UserInterface, \Serializable
 {

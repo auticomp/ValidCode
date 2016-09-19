@@ -2,9 +2,9 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="AppBundle\Entity\Empresa" table="empresa">
     <indexes>
-      <index name="fk__empresa__dominio_tipo_empresa1_idx" columns="ce_tipo_empresa"/>
-      <index name="fk__empresa__dominio_tam_empresa1_idx" columns="ce_tam_empresa"/>
-      <index name="fk__empresa__empresa1_idx" columns="ce_id_matriz"/>
+      <index name="fk__empresas__dominio_tipo_empresa1_idx" columns="ce_tipo_empresa"/>
+      <index name="fk__empresas__dominio_tam_empresa1_idx" columns="ce_tam_empresa"/>
+      <index name="fk__empresas__empresas1_idx" columns="ce_id_matriz"/>
     </indexes>
     <unique-constraints>
       <unique-constraint name="cnpj_empresa_UNIQUE" columns="cnpj_empresa"/>
@@ -30,6 +30,11 @@
     <field name="razaoSocial" type="string" column="razao_social" length="45" nullable="false">
       <options>
         <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ceIdMatriz" type="bigint" column="ce_id_matriz" nullable="true">
+      <options>
+        <option name="unsigned"/>
       </options>
     </field>
     <field name="dataAbertura" type="date" column="data_abertura" nullable="true"/>

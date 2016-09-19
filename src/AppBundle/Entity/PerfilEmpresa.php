@@ -153,7 +153,7 @@ class PerfilEmpresa
 	
 	/**
 	 *
-	 * @return the Empresas
+	 * @return the Empresa
 	 */
 	public function getCeEmpresa() {
 		return $this->ceEmpresa;

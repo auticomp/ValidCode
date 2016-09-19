@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+		<h3>Home > <a href="{{ path('importacaolote_index') }}">Listagem de Importa&ccedil;&atilde;o de arquivos de Lotes</a></h3>
+		<hr />
+	</div>
+	
+	<div class="col-md-12 text-right">
+		<a href="{{ path('importacaolote_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
+	</div>
+	
+	<div class="col-md-12">
+	<br>
+	<table id="tbImportacaoLoteIndex" class="table table-borderer table-striped table-hover">
+         <thead>
+            <tr>
+            	<th>ID</th>
+                <th>Dt. Importa&ccedil;&atilde;o</th>
+                <th>Nome do Arquivo</th>
+                <th>Tamanho/bytes</th>
+                <th>Ativo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arquivoLote in arquivoLotes %}
+            <tr>
+            	<td>{{ arquivoLote.idArquivoLote }}</td>
+                <td><a href="{{ path('importacaolote_show', { 'id': arquivoLote.idArquivoLote }) }}">{{ arquivoLote.dtImportacao|date('d/m/Y H:i:s') }}</a></td>
+                <td>{{ arquivoLote.nomeArquivo }}</td>
+                <td>{{ arquivoLote.tamanhoBytes }}</td>
+                <td>{{ arquivoLote.ativo }}</td>
+                <td>
+                	<a class="btn btn-link" alt="Visualizar Lote" href="{{ path('importacaolote_show', { 'id':  arquivoLote.idArquivoLote }) }}"> 
+                		<i class="fa fa-eye"></i>
+                	</a>
+                	<a class="btn btn-link" alt="Editar Lote" href="{{ path('importacaolote_edit', { 'id':  arquivoLote.idArquivoLote }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	</div>
+</div>
+
+
+   
+{% endblock %}
+
+{% block stylesheets %}
+ 
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tbImportacaoLoteIndex").dataTable();
+	});
+</script>
+{% endblock %}
+

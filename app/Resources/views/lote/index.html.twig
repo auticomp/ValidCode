@@ -8,8 +8,8 @@
 	</div>
 	
 	<div class="col-md-12 text-right">
+		<a href="{{ asset('importacaolote') }}" class="btn btn-info btn-sm"> <i class="fa fa-upload"></i> Importar Arquivo</a>
 		<a href="{{ path('lote_new') }}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Adicionar novo</a>
-		<a href="#" class="btn btn-info btn-sm"> <i class="fa fa-trash"></i> Excluir</a>
 	</div>
 	
 	<div class="col-md-12">
@@ -33,21 +33,20 @@
             <tr>
             	<td>{{ lote.idLote }}</td>
                 <td><a href="{{ path('lote_show', { 'id': lote.idLote }) }}">{{ lote.nomeLote }}</a></td>
-                <td>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('d/m/Y H:i:s') }}{% endif %}</td>
                 <td>{{ lote.qtdeItensColetados }}</td>
                 <td>{{ lote.limiteItens }}</td>
-                <td>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('d/m/Y H:i:s') }}{% endif %}</td>
+                <td>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('d/m/Y H:i:s') }}{% endif %}</td>
                 <td>{{ lote.ativo }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('lote_show', { 'id': lote.idLote }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('lote_edit', { 'id': lote.idLote }) }}">edit</a>
-                        </li>
-                    </ul>
+                	<a class="btn btn-link" alt="Visualizar Lote" href="{{ path('lote_show', { 'id': lote.idLote }) }}"> 
+                		<i class="fa fa-eye"></i>
+                	</a>
+                	<a class="btn btn-link" alt="Editar Lote" href="{{ path('lote_edit', { 'id': lote.idLote }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
+                	
                 </td>
             </tr>
         {% endfor %}
@@ -59,9 +58,9 @@
 
 {% endblock %}
 
- {% block stylesheets %}
+{% block stylesheets %}
  
- {% endblock %}
+{% endblock %}
 
 {% block javascripts %}
 <script type="text/javascript">

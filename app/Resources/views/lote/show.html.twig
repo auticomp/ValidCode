@@ -1,56 +1,87 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lote</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Nomelote</th>
-                <td>{{ lote.nomeLote }}</td>
-            </tr>
-            <tr>
-                <th>Dtcadastro</th>
-                <td>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Qtdeitenscoletados</th>
-                <td>{{ lote.qtdeItensColetados }}</td>
-            </tr>
-            <tr>
-                <th>Limiteitens</th>
-                <td>{{ lote.limiteItens }}</td>
-            </tr>
-            <tr>
-                <th>Dtfechamento</th>
-                <td>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Dtexclusao</th>
-                <td>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Ativo</th>
-                <td>{{ lote.ativo }}</td>
-            </tr>
-            <tr>
-                <th>Idlote</th>
-                <td>{{ lote.idLote }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('lote_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('lote_edit', { 'id': lote.idLote }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="row">
+
+	<div class="col-md-12">
+		<h3>
+			Home > <a href="{{ path('lote_index') }}">Listagem de Lotes</a> / <a
+				href="">Cadastro de Lote</a>
+		</h3>
+		<hr />
+	</div>
+
+	<div class="col-md-12 text-right">
+		<a class="btn btn-primary btn-sm" href="{{ path('lote_index') }}"> <i
+			class="fa fa-backward"></i> Voltar para a Lista
+		</a>
+	</div>
+
+	<div class="col-md-12">
+		<hr />
+		<div class="col-lg-12">
+			<div class="col-lg-12">
+			
+				<div class="col-lg-4">
+					<label>ID Lote</label>
+					<div>{{ lote.idLote }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Nome do Lote:</label>
+					<div class="col-lg-12">{{ lote.nomeLote }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Dt. Cadastro</label>
+					<div>{% if lote.dtCadastro %}{{ lote.dtCadastro|date('Y-m-d H:i:s')
+						}}{% endif %}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Atde. Itens Coletados</label>
+					<div>{{ lote.qtdeItensColetados }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Limite de Itens</label>
+					<div>{{ lote.limiteItens }}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Dt. Fechamento</label>
+					<div>{% if lote.dtFechamento %}{{ lote.dtFechamento|date('d/m/Y H:i:s') }}{% endif %}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Dt. Exclus&atilde;o</label>
+					<div>{% if lote.dtExclusao %}{{ lote.dtExclusao|date('d/m/Y H:i:s')
+						}}{% endif %}</div>
+				</div>
+				<div class="col-lg-4">
+					<label>Ativo?</label>
+					<div>{% if lote.ativo == 1 %} Sim {% else %} N&atilde;o {% endif %}</div>
+				</div>
+				<br>	
+			</div>
+			
+			
+			<div class="col-lg-6">
+			
+				<a class="btn btn-primary btn-sm" href="{{ path('lote_edit', { 'id': lote.idLote }) }}">
+					<i class="fa fa-edit"></i> Editar
+				</a>
+			</div>
+
+			<hr />
+			<div class="col-lg-6 text-right">
+				{{ form_start(delete_form, { 'attr' :{'onclick':'return confirm("Tem certeza que quer remover o registro?")'}}) }}
+	                <button class="btn btn-danger btn-sm" type="submit" value="Delete">
+	                	<i class="fa fa-remove"></i> Excluir
+	                </button>
+	            {{ form_end(delete_form) }}
+			</div>
+		</div>
+
+
+	</div>
+
+</div>
+
 {% endblock %}

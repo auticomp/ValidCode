@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EmpresaType extends AbstractType
 {
@@ -51,23 +52,32 @@ class EmpresaType extends AbstractType
             ])
             //->add('dtCadastro', 'datetime')
             //->add('ativa')
-            ->add('ceMatriz', ChoiceType::class, [
+            ->add('ceMatriz', EntityType::class, [
             	'label' => 'Matriz',
-            		'attr' => [
-            				'class' => 'form-control input-sm'
-            		]
+            	'class' => 'AppBundle:Empresa',
+            	'choice_value' => 'idEmpresa',
+            	'choice_label' => 'razaoSocial',
+            	'attr' => [
+            		'class' => 'form-control input-sm'
+            	]
             ])
-            ->add('ceTipoEmpresa', ChoiceType::class, [
+            ->add('ceTipoEmpresa', EntityType::class, [
             	'label' => 'Tipo',
-            		'attr' => [
-            				'class' => 'form-control input-sm'
-            		]
+            	'class' => 'AppBundle:DominioTipoEmpresa',
+            	'choice_value' => 'idDominioTipoEmpresa',
+            	'choice_label' => 'tipoEmpresa',
+            	'attr' => [
+            		'class' => 'form-control input-sm'
+            	]
             ])
-            ->add('ceTamEmpresa', ChoiceType::class, [
+            ->add('ceTamEmpresa', EntityType::class, [
             	'label' => 'Tamanho',
-            		'attr' => [
-            				'class' => 'form-control input-sm'
-            		]
+            	'class' => 'AppBundle:DominioTamEmpresa',
+            	'choice_value' => 'idDominioTamEmpresa',
+            	'choice_label' => 'tamanhoEmpresa',
+            	'attr' => [
+            		'class' => 'form-control input-sm'
+            	]
             ])
         ;
     }

@@ -29,9 +29,9 @@ class FuncUsuVip
     private $idFuncUsuVip;
 
     /**
-     * @var \AppBundle\Entity\Usuarios
+     * @var \AppBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuarios")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ce_id_usuario", referencedColumnName="id_usuario")
      * })
@@ -47,6 +47,78 @@ class FuncUsuVip
      * })
      */
     private $ceFuncionalidade;
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtCadastro() {
+		return $this->dtCadastro;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtCadastro        	
+	 */
+	public function setDtCadastro(\DateTime $dtCadastro) {
+		$this->dtCadastro = $dtCadastro;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdFuncUsuVip() {
+		return $this->idFuncUsuVip;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idFuncUsuVip
+	 */
+	public function setIdFuncUsuVip($idFuncUsuVip) {
+		$this->idFuncUsuVip = $idFuncUsuVip;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Usuario
+	 */
+	public function getCeUsuario() {
+		return $this->ceUsuario;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceUsuario
+	 */
+	public function setCeUsuario($ceUsuario) {
+		$this->ceUsuario = $ceUsuario;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Funcionalidade
+	 */
+	public function getCeFuncionalidade() {
+		return $this->ceFuncionalidade;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceFuncionalidade
+	 */
+	public function setCeFuncionalidade($ceFuncionalidade) {
+		$this->ceFuncionalidade = $ceFuncionalidade;
+		return $this;
+	}
+	
 
 
 }

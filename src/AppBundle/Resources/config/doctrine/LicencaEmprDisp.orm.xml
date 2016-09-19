@@ -9,6 +9,7 @@
     <id name="idLicencaEmprDisp" type="integer" column="id_licenca_empr_disp">
       <generator strategy="IDENTITY"/>
     </id>
+    <field name="dtInicioUtilizacao" type="datetime" column="dt_inicio_utilizacao" nullable="true"/>
     <many-to-one field="ceLicenca" target-entity="LicencaUso" fetch="LAZY">
       <join-columns>
         <join-column name="ce_id_licenca" referenced-column-name="id_licenca_uso"/>

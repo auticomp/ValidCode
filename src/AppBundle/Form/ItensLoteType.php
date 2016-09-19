@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ItensLoteType extends AbstractType
 {
@@ -39,8 +40,11 @@ class ItensLoteType extends AbstractType
             		]
             ])
             //->add('ceUsuario')
-            ->add('ceLote', ChoiceType::class, [
+            ->add('ceLote', EntityType::class, [
             		'label' => 'Selecione o Lote',
+            		'class' => 'AppBundle:Lote',
+            		'choice_label' => 'nomeLote',
+            		'choice_value' => 'idLote',
             		'attr' => [
             			'class' => 'form-control'	
             		]

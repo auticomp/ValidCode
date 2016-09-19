@@ -50,7 +50,7 @@ class ItensLoteController extends Controller
             $em->persist($itensLote);
             $em->flush();
 
-            return $this->redirectToRoute('itenslote_show', array('id' => $itensLote->getId()));
+            return $this->redirectToRoute('itenslote_show', array('id' => $itensLote->getIdItensLote()));
         }
 
         return $this->render('itenslote/new.html.twig', array(
@@ -92,7 +92,7 @@ class ItensLoteController extends Controller
             $em->persist($itensLote);
             $em->flush();
 
-            return $this->redirectToRoute('itenslote_edit', array('id' => $itensLote->getId()));
+            return $this->redirectToRoute('itenslote_edit', array('id' => $itensLote->getIdItensLote()));
         }
 
         return $this->render('itenslote/edit.html.twig', array(
@@ -132,7 +132,7 @@ class ItensLoteController extends Controller
     private function createDeleteForm(ItensLote $itensLote)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('itenslote_delete', array('id' => $itensLote->getId())))
+            ->setAction($this->generateUrl('itenslote_delete', array('id' => $itensLote->getIdItensLote())))
             ->setMethod('DELETE')
             ->getForm()
         ;

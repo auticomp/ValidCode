@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class LicencaEmprDisp
 {
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dt_inicio_utilizacao", type="datetime", nullable=true)
+     */
+    private $dtInicioUtilizacao;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_licenca_empr_disp", type="integer")
@@ -50,6 +57,96 @@ class LicencaEmprDisp
      * })
      */
     private $ceDispositivo;
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getDtInicioUtilizacao() {
+		return $this->dtInicioUtilizacao;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $dtInicioUtilizacao        	
+	 */
+	public function setDtInicioUtilizacao(\DateTime $dtInicioUtilizacao) {
+		$this->dtInicioUtilizacao = $dtInicioUtilizacao;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getIdLicencaEmprDisp() {
+		return $this->idLicencaEmprDisp;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$idLicencaEmprDisp
+	 */
+	public function setIdLicencaEmprDisp($idLicencaEmprDisp) {
+		$this->idLicencaEmprDisp = $idLicencaEmprDisp;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the LicencaUso
+	 */
+	public function getCeLicenca() {
+		return $this->ceLicenca;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceLicenca
+	 */
+	public function setCeLicenca($ceLicenca) {
+		$this->ceLicenca = $ceLicenca;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Empresa
+	 */
+	public function getCeEmpresa() {
+		return $this->ceEmpresa;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceEmpresa
+	 */
+	public function setCeEmpresa($ceEmpresa) {
+		$this->ceEmpresa = $ceEmpresa;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the Dispositivo
+	 */
+	public function getCeDispositivo() {
+		return $this->ceDispositivo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$ceDispositivo
+	 */
+	public function setCeDispositivo($ceDispositivo) {
+		$this->ceDispositivo = $ceDispositivo;
+		return $this;
+	}
+	
 
 
 }

@@ -50,7 +50,7 @@ class PerfilEmpresaController extends Controller
             $em->persist($perfilEmpresa);
             $em->flush();
 
-            return $this->redirectToRoute('perfilempresa_show', array('id' => $perfilEmpresa->getId()));
+            return $this->redirectToRoute('perfilempresa_show', array('id' => $perfilEmpresa->getIdPerfilEmpresa()));
         }
 
         return $this->render('perfilempresa/new.html.twig', array(
@@ -92,7 +92,7 @@ class PerfilEmpresaController extends Controller
             $em->persist($perfilEmpresa);
             $em->flush();
 
-            return $this->redirectToRoute('perfilempresa_edit', array('id' => $perfilEmpresa->getId()));
+            return $this->redirectToRoute('perfilempresa_edit', array('id' => $perfilEmpresa->getIdPerfilEmpresa()));
         }
 
         return $this->render('perfilempresa/edit.html.twig', array(
@@ -132,7 +132,7 @@ class PerfilEmpresaController extends Controller
     private function createDeleteForm(PerfilEmpresa $perfilEmpresa)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('perfilempresa_delete', array('id' => $perfilEmpresa->getId())))
+            ->setAction($this->generateUrl('perfilempresa_delete', array('id' => $perfilEmpresa->getIdPerfilEmpresa())))
             ->setMethod('DELETE')
             ->getForm()
         ;

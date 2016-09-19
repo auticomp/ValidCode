@@ -1,21 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>ItensLote edit</h1>
+<div class="row">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+	<div class="col-md-12">
+		<h3>
+			Home > <a href="{{ path('itenslote_index') }}">Listagem de Empresas</a> / <a
+				href="">Cadastro de Empresa</a>
+		</h3>
+		<hr />
+	</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('itenslote_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+	<div class="col-md-12 text-right">
+		<a class="btn btn-primary btn-sm" href="{{ path('itenslote_index') }}"> <i
+			class="fa fa-backward"></i> Voltar para a Lista
+		</a>
+	</div>
+
+	<div class="col-md-12">
+		<hr />
+		<div class="col-lg-8">
+			{{ form_start(edit_form) }} 
+			
+				{{ form_widget(edit_form) }}
+
+			<hr />
+
+			<div class="col-lg-6">
+				<button class="btn btn-default btn-sm" type="reset" value="Limpar">
+					<i class="fa fa-erase"></i> Limpar
+				</button>
+				<button class="btn btn-primary btn-sm" type="submit" value="Create"
+					data-loading-text="Salvando...">
+					<i class="fa fa-save"></i> Salvar
+				</button>
+			</div>
+
+			{{ form_end(edit_form) }}
+			
+			<div class="col-lg-6 text-right">
+				{{ form_start(delete_form) }}
+	                <button class="btn btn-danger btn-sm" type="submit" value="Delete">
+	                	<i class="fa fa-remove"></i> Excluir
+	                </button>
+	            {{ form_end(delete_form) }}
+			</div>
+		</div>
+
+
+	</div>
+
+</div>
+
+    
 {% endblock %}

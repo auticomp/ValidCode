@@ -50,7 +50,7 @@ class LicencaUsoController extends Controller
             $em->persist($licencaUso);
             $em->flush();
 
-            return $this->redirectToRoute('licenca_show', array('id' => $licencaUso->getId()));
+            return $this->redirectToRoute('licenca_show', array('id' => $licencaUso->getIdLicencaUso()));
         }
 
         return $this->render('licencauso/new.html.twig', array(
@@ -92,7 +92,7 @@ class LicencaUsoController extends Controller
             $em->persist($licencaUso);
             $em->flush();
 
-            return $this->redirectToRoute('licenca_edit', array('id' => $licencaUso->getId()));
+            return $this->redirectToRoute('licenca_edit', array('id' => $licencaUso->getIdLicencaUso()));
         }
 
         return $this->render('licencauso/edit.html.twig', array(
@@ -132,7 +132,7 @@ class LicencaUsoController extends Controller
     private function createDeleteForm(LicencaUso $licencaUso)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('licenca_delete', array('id' => $licencaUso->getId())))
+            ->setAction($this->generateUrl('licenca_delete', array('id' => $licencaUso->getIdLicencaUso())))
             ->setMethod('DELETE')
             ->getForm()
         ;

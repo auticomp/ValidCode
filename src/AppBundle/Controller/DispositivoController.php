@@ -50,7 +50,7 @@ class DispositivoController extends Controller
             $em->persist($dispositivo);
             $em->flush();
 
-            return $this->redirectToRoute('dispositivo_show', array('id' => $dispositivo->getId()));
+            return $this->redirectToRoute('dispositivo_show', array('id' => $dispositivo->getIdDispositivo()));
         }
 
         return $this->render('dispositivo/new.html.twig', array(
@@ -92,7 +92,7 @@ class DispositivoController extends Controller
             $em->persist($dispositivo);
             $em->flush();
 
-            return $this->redirectToRoute('dispositivo_edit', array('id' => $dispositivo->getId()));
+            return $this->redirectToRoute('dispositivo_edit', array('id' => $dispositivo->getIdDispositivo()));
         }
 
         return $this->render('dispositivo/edit.html.twig', array(
@@ -132,7 +132,7 @@ class DispositivoController extends Controller
     private function createDeleteForm(Dispositivo $dispositivo)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('dispositivo_delete', array('id' => $dispositivo->getId())))
+            ->setAction($this->generateUrl('dispositivo_delete', array('id' => $dispositivo->getIdDispositivo())))
             ->setMethod('DELETE')
             ->getForm()
         ;
