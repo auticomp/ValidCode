@@ -6,6 +6,14 @@ This is a start project from company AutiComp
 
 All rigths reserved.
 
+25/09/2016
+1. Melhorias no modulo de empresa
+2. Correção de fluxo de Lote
+3. Atualizacao de Layout de Importação
+4. Inclusao de tipo de lotes na criacao de lote
+
+
+
 04/09/2016
 
 1. Inclusao de formatacao
