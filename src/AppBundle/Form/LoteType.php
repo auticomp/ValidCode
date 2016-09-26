@@ -28,22 +28,31 @@ class LoteType extends AbstractType
             			'placeholder' => 'Digite o nome do lote'
             		]
             ])
+            ->add('ceIdTipoLote', EntityType::class, [
+            		'label' => 'Tipo de Lote',
+            		'class' => 'AppBundle:TipoLote',
+            		'choice_value' => 'idTipoLote',
+            		'choice_label' => 'descrTipoLote',
+            		'attr' => [
+            			'class' => 'form-control'
+            		]
+            ])
            // ->add('dtCadastro', 'datetime')
-            ->add('qtdeItensColetados', IntegerType::class, [
+           /* ->add('qtdeItensColetados', IntegerType::class, [
             		'label' => 'Qtde. Itens coletados',
             		'attr' => [
             				'class' => 'form-control',
             				'placeholder' => 'Digite a qtde'
             		]
             ])
-            ->add('limiteItens', IntegerType::class, [
+             ->add('limiteItens', IntegerType::class, [
             		'label' => 'Limite de itens',
             		'attr' => [
             				'class' => 'form-control',
             				'placeholder' => 'Digite o limite de qtde'
             		]
-            ])
-            ->add('dtFechamento', DateType::class, [
+            ]) */
+            /* ->add('dtFechamento', DateType::class, [
             		'label' => 'Dt. Fechamento',
             		'html5' => true,
             		'widget' => 'single_text',
@@ -59,7 +68,7 @@ class LoteType extends AbstractType
             				'class' => 'form-control',
             				'readonly' => 'readonly'
             		]
-            ])
+            ]) */
             ->add('ativo', ChoiceType::class, [
             		'label' => 'Ativo?',
             		'attr' => [
@@ -67,7 +76,7 @@ class LoteType extends AbstractType
             		],
             		'choices' => array('Selecione' => '', 'Sim' => '1', utf8_encode('Não') => 0)
             ])
-            ->add('ceEmpresa', EntityType::class, [
+            ->add('ceIdEmpresa', EntityType::class, [
             	'label' => 'Selecione a Empresa',
             	'class' => 'AppBundle:Empresa',
             	'choice_label' => 'razaoSocial',

@@ -21,7 +21,7 @@
                 <th>CNPJ</th>
                 <th>Inscr.Estadual</th>
                 <th>NNome Fantasia</th>
-                <th>Razão Social</th>
+                <th>Raz&atilde;o Social</th>
                 <th>Dt. Abertura</th>
                 <th>Dt. Cadastro</th>
                 <th>Ativa</th>
@@ -36,18 +36,17 @@
                 <td>{{ empresa.inscrEstEmpresa }}</td>
                 <td>{{ empresa.nomeFantasia }}</td>
                 <td>{{ empresa.razaoSocial }}</td>
-                <td>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('d/m/Y H:i:s') }}{% endif %}</td>
                 <td>{{ empresa.ativa }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('empresa_show', { 'id': empresa.idEmpresa }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('empresa_edit', { 'id': empresa.idEmpresa }) }}">edit</a>
-                        </li>
-                    </ul>
+                    
+                    <a class="btn btn-link" alt="Visualizar Lote" href="{{ path('empresa_show', { 'id': empresa.idEmpresa }) }}"> 
+                		<i class="fa fa-eye"></i>
+                	</a>
+                	<a class="btn btn-link" alt="Editar Lote" href="{{ path('empresa_edit', { 'id': empresa.idEmpresa }) }}">
+                		<i class="fa fa-edit"></i>
+                	</a>
                 </td>
             </tr>
         {% endfor %}

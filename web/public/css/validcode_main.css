@@ -15,3 +15,7 @@
     filter: alpha(opacity=0);
     
 }
+
+.justfied-buttons button, .justfied-buttons a {
+ 	width: 100%;
+}

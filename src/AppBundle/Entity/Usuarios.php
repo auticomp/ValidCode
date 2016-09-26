@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use AppBundle\Repository;
+use AppBundle\Repository\PerfilUsuarioRepository;
 
 /**
  * Usuario
@@ -14,6 +15,10 @@ use AppBundle\Repository;
  */
 class Usuarios implements UserInterface, \Serializable
 {
+	
+	private $_contextRepository;
+	
+	
     /**
      * @var string
      *
@@ -201,7 +206,8 @@ class Usuarios implements UserInterface, \Serializable
 	 */
 	public function getRoles() {
 		// TODO: Auto-generated method stub
-
+		return array('ROLE_ADMIN');
+		
 	}
 
 	/**
@@ -257,4 +263,3 @@ class Usuarios implements UserInterface, \Serializable
 	
 	
 }
-

@@ -17,6 +17,7 @@
         <thead>
             <tr>
             	<th>ID</th>
+            	<th>Lote</th>
                 <th>Descri&ccedil;&atilde;o</th>
                 <th>Nro. C&oacute;digo de Barras</th>
                 <th>Dt. Coleta</th>
@@ -27,6 +28,7 @@
         {% for itensLote in itensLotes %}
             <tr>
             	<td>{{ itensLote.idItensLote }}</td>
+            	<td>{{ itensLote.ceLote.nomeLote }}</td>
                 <td><a href="{{ path('itenslote_show', { 'id': itensLote.idItensLote }) }}">{{ itensLote.descricao }}</a></td>
                 <td>{{ itensLote.nroCodigoBarra }}</td>
                 <td>{% if itensLote.dtColeta %}{{ itensLote.dtColeta|date('d/m/Y H:i:s') }}{% endif %}</td>

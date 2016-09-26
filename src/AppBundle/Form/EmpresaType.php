@@ -20,12 +20,13 @@ class EmpresaType extends AbstractType
     {
         $builder
             ->add('cnpjEmpresa', TextType::class, [
-            		'label' => 'CNPJ',
+            		'label' => '*CNPJ',
             		'attr' => [
-            				'class' => 'form-control input-sm'
+            				'class' => 'form-control input-md',
+            				'placeholder' => 'Digite o CNPJ da Empresa'
             		]
             ])
-            ->add('inscrEstEmpresa', TextType::class, [
+            /* ->add('inscrEstEmpresa', TextType::class, [
             		'label' => 'IE',
             		'attr' => [
             				'class' => 'form-control input-sm'
@@ -36,18 +37,24 @@ class EmpresaType extends AbstractType
             		'attr' => [
             				'class' => 'form-control input-sm'
             		]
-            ])
+            ]) */
             ->add('razaoSocial', TextType::class, [
-            		'label' => 'Razao Social',
+            		'label' => '*Razao Social',
             		'attr' => [
-            				'class' => 'form-control input-sm'
+            				'class' => 'form-control input-md',
+            				'placeholder' => utf8_encode('Digite a Razão Social da Empresa')
             		]
             ])
             ->add('dataAbertura', DateType::class,[
             		'widget' => 'single_text',
-            		'label' => 'Dt. Abertura',
+            		'label' => '*Dt. Abertura',
+            		'label_format' => 'dd/MM/yyyy',
+            		'format' => 'dd/MM/yyyy',
+            		'invalid_message' => 'Data no formato incorreto',
+            		'model_timezone' => 'America/Sao_Paulo',
             		'attr' => [
-            			'class' => 'form-control input-sm'	
+            			'class' => 'form-control input-md',
+            			'placeholder' => 'dd/mm/aaaa de abertura'	
             		]
             ])
             //->add('dtCadastro', 'datetime')
@@ -58,19 +65,19 @@ class EmpresaType extends AbstractType
             	'choice_value' => 'idEmpresa',
             	'choice_label' => 'razaoSocial',
             	'attr' => [
-            		'class' => 'form-control input-sm'
+            		'class' => 'form-control input-md'
             	]
             ])
             ->add('ceTipoEmpresa', EntityType::class, [
-            	'label' => 'Tipo',
+            	'label' => '*Tipo',
             	'class' => 'AppBundle:DominioTipoEmpresa',
             	'choice_value' => 'idDominioTipoEmpresa',
             	'choice_label' => 'tipoEmpresa',
             	'attr' => [
-            		'class' => 'form-control input-sm'
+            		'class' => 'form-control input-md'
             	]
             ])
-            ->add('ceTamEmpresa', EntityType::class, [
+            /* ->add('ceTamEmpresa', EntityType::class, [
             	'label' => 'Tamanho',
             	'class' => 'AppBundle:DominioTamEmpresa',
             	'choice_value' => 'idDominioTamEmpresa',
@@ -78,7 +85,7 @@ class EmpresaType extends AbstractType
             	'attr' => [
             		'class' => 'form-control input-sm'
             	]
-            ])
+            ]) */
         ;
     }
     

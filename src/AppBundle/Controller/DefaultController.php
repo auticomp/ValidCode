@@ -12,29 +12,22 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * 
      */
     public function indexAction(Request $request)
     {
     	
+    	/* return $this->render('default/index.html.twig', [
+    			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+    	]);
+    	 */
+    	
+    	$session = new Session();
+    	
+    	
     	return $this->render('default/index.html.twig', [
     			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
     	]);
-    	
-    	
-    	/* $session = new Session();
-    	
-    	
-        if($session->get('auth') == NULL)
-        {
-        	return $this->redirect($this->generateUrl('auth_login'));
-        	
-        } else {
-        	
-        	return $this->render('default/index.html.twig', [
-        			'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-        	]);
-        } */
-        
         
     }
     

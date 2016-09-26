@@ -15,4 +15,15 @@ $collection->add('auth_login', new Route(
 		array('GET', 'POST')
 		));
 
+
+$collection->add('auth_forgot', new Route(
+		'/forgot',
+		array('_controller' => 'AppBundle:Auth:forgot'),
+		array(),
+		array(),
+		'',
+		array(),
+		array('GET', 'POST')
+		));
+
 return $collection;

@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Empresa;
 use AppBundle\Form\EmpresaType;
+use AppBundle\Repository\EmpresaRepository;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Empresa controller.
@@ -16,6 +18,9 @@ use AppBundle\Form\EmpresaType;
  */
 class EmpresaController extends Controller
 {
+	
+	private $empresaRepositoryContext;
+	
     /**
      * Lists all Empresa entities.
      *
@@ -46,16 +51,23 @@ class EmpresaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($empresa);
-            $em->flush();
-
-            return $this->redirectToRoute('empresa_show', array('id' => $empresa->getIdEmpresa()));
+        	
+        	$this->empresaRepositoryContext = new EmpresaRepository($this->getDoctrine()->getManager());
+            
+        	$em = $this->empresaRepositoryContext;
+            
+        	if($em->jaExiste($empresa->getCnpjEmpresa())>0){
+        		$this->addFlash("error", utf8_encode("Empresa já cadastrada"));
+        	} else {
+        		$em->Salvar($empresa);
+        		$this->addFlash("success", utf8_encode("Empresa cadastrada com Sucesso!"));
+        		return $this->redirectToRoute('empresa_show', array('id' => $empresa->getIdEmpresa()));
+        	}
         }
 
         return $this->render('empresa/new.html.twig', array(
             'empresa' => $empresa,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 

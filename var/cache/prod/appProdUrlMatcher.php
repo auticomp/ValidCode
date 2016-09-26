@@ -109,6 +109,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::LoginAction',  '_route' => 'login',);
         }
 
+        // forgot
+        if ($pathinfo === '/forgot') {
+            return array (  '_controller' => 'AppBundle\\Controller\\AuthController::ForgotAction',  '_route' => 'forgot',);
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
@@ -568,6 +573,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::loginAction',  '_route' => 'auth_login',);
         }
         not_auth_login:
+
+        // auth_forgot
+        if ($pathinfo === '/forgot') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_auth_forgot;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\AuthController::forgotAction',  '_route' => 'auth_forgot',);
+        }
+        not_auth_forgot:
 
         if (0 === strpos($pathinfo, '/usuarios')) {
             // usuarios_index

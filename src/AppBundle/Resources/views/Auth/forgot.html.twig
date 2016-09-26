@@ -1,0 +1,42 @@
+{% extends "::auth.html.twig" %} 
+
+{% block title %}Acesso :: ValidCode{% endblock %} 
+
+{% block body %}
+<div class="row">
+
+	<div class="col-lg-12">
+		<h3>Acesso Restrito</h3>
+		<hr>
+	</div>
+
+	<div class="col-lg-6 col-lg-offset-3">
+		<form class="horizontal-form" action="{{ asset('forgot') }}" method="post" enctype="application/x-www-form-urlencoded">
+		 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+		<div class="col-lg-12">
+			<label>E-Mail</label>
+			<input type="email" class="form-control" name="_username" id="username" value="" />
+		</div>
+		
+		<div class="col-lg-12 text-right">
+			<br>
+			<button type="submit" class="btn btn-primary btn-lg" name="btnLogin" id="btnLogin">
+				<i class="fa fa-sign-in"></i> Recuperar
+			</button>
+		</div>
+		
+		</form>
+		
+		
+	</div>
+	
+	
+</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

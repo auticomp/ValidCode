@@ -7,7 +7,11 @@
     <id name="idArquivoLote" type="bigint" column="id_arquivo_lote">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="arquivoImportado" type="blob" column="arquivo_importado" nullable="false"/>
+    <field name="arquivoImportado" type="blob" column="arquivo_importado" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="dtImportacao" type="datetime" column="dt_importacao" nullable="false"/>
     <field name="nomeArquivo" type="string" column="nome_arquivo" length="45" nullable="false">
       <options>

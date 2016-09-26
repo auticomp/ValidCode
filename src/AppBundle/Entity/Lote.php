@@ -78,8 +78,20 @@ class Lote
      *   @ORM\JoinColumn(name="ce_id_empresa", referencedColumnName="id_empresa")
      * })
      */
-    private $ceEmpresa;
+    private $ceIdEmpresa;
 	
+    /**
+     * @var \AppBundle\Entity\TipoLote
+     * 
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TipoLote")
+     * @ORM\JoinColumns({
+     * 	 @ORM\JoinColumn(name="ce_id_tipo_lote", referencedColumnName="id_tipo_lote")
+     * })
+     */
+    private $ceIdTipoLote;
+    
+    
+    
 	/**
 	 *
 	 * @return the string
@@ -229,21 +241,42 @@ class Lote
 	 *
 	 * @return the Empresa
 	 */
-	public function getCeEmpresa() {
-		return $this->ceEmpresa;
+	public function getCeIdEmpresa() {
+		return $this->ceIdEmpresa;
 	}
 	
 	/**
 	 *
-	 * @param
-	 *        	$ceEmpresa
+	 * @param \AppBundle\Entity\Empresa $ceIdEmpresa
+	 * @return Empresa
 	 */
-	public function setCeEmpresa($ceEmpresa) {
-		$this->ceEmpresa = $ceEmpresa;
+	public function setCeIdEmpresa(\AppBundle\Entity\Empresa $ceIdEmpresa) {
+		$this->ceIdEmpresa = $ceIdEmpresa->getIdEmpresa();
 		return $this;
 	}
 	
 
+    /**
+     * Set ceTipoLote
+     *
+     * @param \AppBundle\Entity\TipoLote $ceTipoLote
+     *
+     * @return Lote
+     */
+    public function setCeIdTipoLote(\AppBundle\Entity\TipoLote $ceIdTipoLote)
+    {
+        $this->ceIdTipoLote = $ceIdTipoLote;
 
+        return $this;
+    }
+
+    /**
+     * Get ceTipoLote
+     *
+     * @return \AppBundle\Entity\TipoLote
+     */
+    public function getCeIdTipoLote()
+    {
+        return $this->ceIdTipoLote;
+    }
 }
-

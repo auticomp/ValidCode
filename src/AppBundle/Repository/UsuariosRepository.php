@@ -2,9 +2,10 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 
-class UsuariosRepository extends EntityRepository
+class UsuariosRepository extends EntityRepository implements UserLoaderInterface
 {
 	
 	

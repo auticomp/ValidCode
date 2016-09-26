@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\ItensLote;
 use AppBundle\Form\ItensLoteType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * ItensLote controller.
@@ -20,12 +21,14 @@ class ItensLoteController extends Controller
      * Lists all ItensLote entities.
      *
      * @Route("/", name="itenslote_index")
+     * @ParamConverter(name="idLote")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
+        
         $itensLotes = $em->getRepository('AppBundle:ItensLote')->findAll();
 
         return $this->render('itenslote/index.html.twig', array(

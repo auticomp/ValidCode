@@ -32,11 +32,6 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="ceIdMatriz" type="bigint" column="ce_id_matriz" nullable="true">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
     <field name="dataAbertura" type="date" column="data_abertura" nullable="true"/>
     <field name="dtCadastro" type="datetime" column="dt_cadastro" nullable="true"/>
     <field name="ativa" type="integer" column="ativa" nullable="true">
@@ -44,11 +39,6 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <many-to-one field="ceMatriz" target-entity="Empresa" fetch="LAZY">
-      <join-columns>
-        <join-column name="ce_id_matriz" referenced-column-name="id_empresa"/>
-      </join-columns>
-    </many-to-one>
     <many-to-one field="ceTipoEmpresa" target-entity="DominioTipoEmpresa" fetch="LAZY">
       <join-columns>
         <join-column name="ce_tipo_empresa" referenced-column-name="id_dominio_tipo_empresa"/>
@@ -57,6 +47,11 @@
     <many-to-one field="ceTamEmpresa" target-entity="DominioTamEmpresa" fetch="LAZY">
       <join-columns>
         <join-column name="ce_tam_empresa" referenced-column-name="id_dominio_tam_empresa"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ceMatriz" target-entity="Empresa" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_matriz" referenced-column-name="id_empresa"/>
       </join-columns>
     </many-to-one>
   </entity>

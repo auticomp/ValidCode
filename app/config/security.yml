@@ -34,5 +34,5 @@ security:
               always_use_default_target_path: true
               
     #access_control:
-      # require ROLE_ADMIN for /lote
-     #       - { path: ^/lote, roles: ROLE_ADMIN }
+    #require ROLE_ADMIN for /lote
+    #  - { path: ^/lote, roles: ROLE_ADMIN }

@@ -1,56 +1,129 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Empresa</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Cnpjempresa</th>
-                <td>{{ empresa.cnpjEmpresa }}</td>
-            </tr>
-            <tr>
-                <th>Inscrestempresa</th>
-                <td>{{ empresa.inscrEstEmpresa }}</td>
-            </tr>
-            <tr>
-                <th>Nomefantasia</th>
-                <td>{{ empresa.nomeFantasia }}</td>
-            </tr>
-            <tr>
-                <th>Razaosocial</th>
-                <td>{{ empresa.razaoSocial }}</td>
-            </tr>
-            <tr>
-                <th>Dataabertura</th>
-                <td>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Dtcadastro</th>
-                <td>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Ativa</th>
-                <td>{{ empresa.ativa }}</td>
-            </tr>
-            <tr>
-                <th>Idempresa</th>
-                <td>{{ empresa.idEmpresa }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('empresa_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('empresa_edit', { 'id': empresa.idEmpresa }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="row">
+
+	<div class="col-md-12">
+		<h3>
+			Home > <a href="{{ path('lote_index') }}">Listagem de Lotes</a> / <a
+				href="">Cadastro de Lote</a>
+		</h3>
+		<hr />
+	</div>
+
+	<div class="col-md-12 text-right">
+		<a class="btn btn-primary btn-sm" href="{{path('empresa_index') }}"> <i
+			class="fa fa-mail-reply"></i> Voltar para a Lista
+		</a>
+	</div>
+
+	<div class="col-lg-12">
+		{% if app.session.flashBag.has('success') %}
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  {% for msg in app.session.flashBag.get('success') %}
+		        <p>{{ msg }}</p>
+		      {% endfor %}
+			</div>
+	    {% endif %}
+	</div>
+
+	<div class="col-md-12">
+		<hr />
+		<div class="col-lg-12">
+			<div class="col-lg-12">
+				<div class="col-lg-4">
+	                <label>ID</label>
+	                <div>{{ empresa.idEmpresa }}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>CNPJ</label>
+	                <div>{{ empresa.cnpjEmpresa }}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>IE</label>
+	                <div>{{ empresa.inscrEstEmpresa }}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>Nome Fantasia</label>
+	                <div>{{ empresa.nomeFantasia }}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>Razao Social</label>
+	                <div>{{ empresa.razaoSocial }}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>Dt. Abertura</label>
+	                <div>{% if empresa.dataAbertura %}{{ empresa.dataAbertura|date('d/m/Y') }}{% endif %}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>Dt. Cadastro</label>
+	                <div>{% if empresa.dtCadastro %}{{ empresa.dtCadastro|date('d/m/Y H:i:s') }}{% endif %}</div>
+	           </div>
+	           <div class="col-lg-4">
+	                <label>Ativa</label>
+	                <div>{{ empresa.ativa }}</div>
+	           </div>
+	        </div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<hr> 
+		<div class="col-lg-12 justfied-buttons">
+			<div class="col-lg-3 col-md-3">
+				<a class="btn btn-primary btn-lg"
+					href="{{ path('empresa_edit', { 'id': empresa.idEmpresa }) }}"> <i
+					class="fa fa-edit"></i> Editar
+				</a>
+			</div>
+			<div class="col-lg-3 col-md-3 text-center">
+				<button class="btn btn-lg btn-default">
+					<i class="fa fa-table ">&nbsp;</i> Criar Lote
+				</button>
+			</div>
+			<div class="col-lg-3 col-md-3 text-center">
+				<button class="btn btn-lg btn-default">
+					<i class="fa fa-users">&nbsp;</i>  Incluir Funcionarios
+				</button>
+			</div>
+			<div class="col-lg-3 col-md-3 text-right">
+				{{ form_start(delete_form, { 'attr' :{'onclick':'return confirm("Tem certeza que quer remover o registro?")'}}) }}
+				<button class="btn btn-danger btn-lg" type="submit" value="Delete">
+					<i class="fa fa-remove">&nbsp;</i> Excluir Empresa
+				</button>
+				{{ form_end(delete_form) }}
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-12">
+		<br />
+		<div class="col-lg-12  justfied-buttons">
+			<div class="col-lg-3 text-center">
+				<button class="btn btn-lg btn-default">
+					<i class="fa fa-mobile-phone">&nbsp;</i> Dispositivos
+				</button>
+			</div>
+			<div class="col-lg-3 text-center">
+				<button class="btn btn-lg btn-default">
+					<i class="fa fa-key">&nbsp;</i> Licen&ccedil;as
+				</button>
+			</div>
+			<div class="col-lg-3 text-center">
+			</div>
+			<div class="col-lg-3 text-right">
+			</div>
+		</div>
+	</div>
+	
+	
+	
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+ 
 {% endblock %}
