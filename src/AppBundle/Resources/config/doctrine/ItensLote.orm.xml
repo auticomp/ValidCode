@@ -4,6 +4,7 @@
     <indexes>
       <index name="fk__itens_lote__usuarios1_idx" columns="ce_id_usuario"/>
       <index name="fk__itens_lote__lotes1_idx" columns="ce_id_lote"/>
+      <index name="fk_itens_lote_dispositivo1" columns="ce_id_dispositivo"/>
     </indexes>
     <id name="idItensLote" type="bigint" column="id_itens_lote">
       <generator strategy="IDENTITY"/>
@@ -19,6 +20,11 @@
       </options>
     </field>
     <field name="dtColeta" type="datetime" column="dt_coleta" nullable="true"/>
+    <many-to-one field="ceDispositivo" target-entity="Dispositivo" fetch="LAZY">
+      <join-columns>
+        <join-column name="ce_id_dispositivo" referenced-column-name="id_dispositivo"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="ceUsuario" target-entity="Usuarios" fetch="LAZY">
       <join-columns>
         <join-column name="ce_id_usuario" referenced-column-name="id_usuario"/>

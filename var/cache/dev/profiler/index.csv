@@ -618,3 +618,11 @@ d8c8b9,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/lote/,1
 9d2eb4,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/itenslote/?lote=1,1474848561,3b6c64,200
 3b6c64,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/itenslote/?lote=1,1474848561,,500
 72e7c8,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/itenslote/?lote=1,1474848784,,200
+41f0ff,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/dispositivo/,1476044108,,200
+32e015,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/dispositivo/new,1476044114,02e6be,200
+02e6be,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/dispositivo/new,1476044114,,500
+ff6701,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/dispositivo/new,1476045228,,200
+f64be3,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/lote/,1476060142,81dd0d,200
+81dd0d,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/lote/,1476060142,,500
+a5c63f,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/lote/,1476060286,,200
+d16650,127.0.0.1,GET,http://localhost:8080/validcode_dev/web/app_dev.php/lote/new,1476060290,,200
