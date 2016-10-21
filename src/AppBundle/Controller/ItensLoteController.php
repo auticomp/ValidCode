@@ -24,12 +24,17 @@ class ItensLoteController extends Controller
      * @ParamConverter(name="idLote")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $loteId = $request->get("loteid");
         
-        $itensLotes = $em->getRepository('AppBundle:ItensLote')->findAll();
+        if(empty($loteId)){
+        	$itensLotes = $em->getRepository('AppBundle:ItensLote')->findAll();
+        } else {
+        	$itensLotes = $em->getRepository('AppBundle:ItensLote')->findBy(array('ceLote' => $loteId));
+        }
 
         return $this->render('itenslote/index.html.twig', array(
             'itensLotes' => $itensLotes,

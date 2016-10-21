@@ -13,6 +13,9 @@ app_dispositivo:
 app_itens_lote:
     resource: "@AppBundle/Controller/ItensLoteController.php"
     type:     annotation
+    defaults: 
+        _controller: "AppBundle/Controller/ItensLoteController:index"
+        loteid: "[0-9]"
 
 app_licenca_uso:
     resource: "@AppBundle/Controller/LicencaUsoController.php"

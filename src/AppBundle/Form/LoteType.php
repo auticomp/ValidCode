@@ -77,6 +77,7 @@ class LoteType extends AbstractType
             		'choices' => array('Selecione' => '', 'Sim' => '1', utf8_encode('Não') => 0)
             ])
             ->add('ceIdEmpresa', EntityType::class, [
+            	'placeholder' => 'Selecione',
             	'label' => 'Selecione a Empresa',
             	'class' => 'AppBundle:Empresa',
             	'choice_label' => 'razaoSocial',
