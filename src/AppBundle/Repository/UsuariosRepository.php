@@ -3,6 +3,7 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use AppBundle\Entity\Usuarios;
 
 
 class UsuariosRepository extends EntityRepository implements UserLoaderInterface
@@ -23,20 +24,20 @@ class UsuariosRepository extends EntityRepository implements UserLoaderInterface
 	 */
 	public function loadUserByUsername($username) {
 		
-		$qb = $this->_em->createQueryBuilder();
-				
-		echo $username;
+		$retorno = false;
 		
-		$dados = $qb->select('u')
-			->from('AppBundle:Usuarios', 'u')
-			->where('u.emailUsuario = :emailUsuario')
-			->setParameter('emailUsuario', $username)
-			->getQuery()
-			->getOneOrNullResult();
+		$rs = $this->_em->createQueryBuilder();
 		
-			print_r($dados);
-			
-			return "";
+		$retorno = $rs->select('u')
+			->from("AppBundle:Usuarios","u")
+            ->where("u.emailUsuario = :username")
+            ->setParameter("username", $username)
+            ->getQuery()
+            ->getOneOrNullResult();
+		
+            
+		return $retorno;
+		
 	}
 	
 

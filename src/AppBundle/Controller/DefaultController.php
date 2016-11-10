@@ -22,7 +22,7 @@ class DefaultController extends Controller
     	]);
     	 */
     	
-    	$session = new Session();
+    	
     	
     	
     	return $this->render('default/index.html.twig', [

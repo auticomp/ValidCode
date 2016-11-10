@@ -109,6 +109,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::LoginAction',  '_route' => 'login',);
         }
 
+        // login_check
+        if ($pathinfo === '/login_check') {
+            return array (  '_controller' => 'AppBundle\\Controller\\AuthController::LoginCheckAction',  '_route' => 'login_check',);
+        }
+
         // forgot
         if ($pathinfo === '/forgot') {
             return array (  '_controller' => 'AppBundle\\Controller\\AuthController::ForgotAction',  '_route' => 'forgot',);

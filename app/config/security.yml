@@ -9,6 +9,7 @@ security:
         our_db_provider:
           entity:
             class: AppBundle:Usuarios
+            # property: email_usuario
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -29,10 +30,10 @@ security:
             anonymous: ~
             form_login:
               login_path: login
-              check_path: login
+              check_path: login_check
               csrf_token_generator: security.csrf.token_manager
               always_use_default_target_path: true
               
-    #access_control:
+    access_control:
     #require ROLE_ADMIN for /lote
-    #  - { path: ^/lote, roles: ROLE_ADMIN }
+      - { path: ^/lote, roles: ROLE_ADMIN }

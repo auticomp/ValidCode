@@ -59,6 +59,7 @@ class ArquivoLoteType extends AbstractType
             		'choices' => array('Selecione' => '', 'Sim' => '1', utf8_encode('Não') => 0)
             ]) */
             ->add('ceLote', EntityType::class, [
+            		'placeholder' => 'Selecione o Lote',
             		'label' => 'Para o Lote?',
             		'class' => 'AppBundle:Lote',
             		'choice_label' => 'nomeLote',
